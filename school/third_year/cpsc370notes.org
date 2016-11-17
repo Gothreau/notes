@@ -400,7 +400,7 @@ data Queue a = Q[a][a][a] -- Q head, worker, tail
       - syntactic sugar for
 	  [10,20,30] >>= (\ a ->
             [1,2] >>= (\ b -> [a+b]))
-** TODO midterm exam
+** DONE midterm exam
    DEADLINE: <2016-11-07 Mon>
 - recursion
 - tail position
