@@ -1,0 +1,505 @@
+* lecture 2
+** relations
+- a relation r from A to B is a subset of A x B
+  - or sometimes (A, B, r) where r is a subset of A X B
+- for a function the set A is called the domain and B is the co-domain
+
+** functions
+- a function f from A to B ( f: A->B) satisfies the two rules
+  - (i) must answer every question
+    - for all a in A there exists a b in B such that (a,b) is in f
+  - (ii) one answer per question
+    - for any a in A and any b1,b2 in B if (a,b1) and (a,b2) are both in f then b1=b2
+- a partial function f from A to B is a relation that satisfies ii
+  - relevant to cs because programming functions dont neccesarily have an answer for every value
+- given finite sets A and B how many functions are there from A to B
+  - |B^A| = |B|^|A|
+- how many partial functions are there from A to B
+  - add an unknown to B then the answer is (|B U {?}|^|A|)
+    - like null
+- how do we cope with multiple arguments in a function
+  - mathematics treats multi-arg functions as functions from a cross-product
+    - fourier: (Integers x Real numbers) -> Real numbers
+
+* lecture 3
+- currying is functions that return functions and is a way to deal with multiple argument functions
+  - a function from AxB to C can be though of as a function from a to a function of B to C
+  - named after a logistian Haskell Curry
+    - invented by Schonfinkel (o has an umlout)
+- two charateristics of a programming language that suggest it's functional are
+  - anonymous functions
+  - the ability to return functions from functions
+- Haskell syntax
+  - g (n,x) = sin (fromRational n * x)
+    - can also include types by putting the following first g :(two colons) Int * Double -> Double
+    - curried version: f n x = sin (fromRational n * x)
+      - f3 = f(3)
+      - f3(2.75)
+  - -- is a comment in Haskell (minus minus)
+- Scheme syntax
+  - (define (g n x) (sin (* n x)))
+    - (g 3 4.5)
+
+* lecture 4
+syntax notes for haskel
+- funtion application is juxtaposition (placing next to eah other)
+  - f (x) = x + 1
+    - f (16)
+    - or 'f 16' both are valid
+  - juxtaposition binds very tightly
+  - there is an operator '$' which has low precedence and binds right to left
+- ordinary names in haskell consist of letters, numbers and _, with the usual rules
+  - functions & variables have names that start with lower case letters
+  - operator names
+    - consist of !#$%&+_./*<=>?@\^|~ and :
+- use function in an infix way by placing them in backticks
+  - 3 `f` 1
+- operators can be used in a prefix way by surrounding with ()
+  - + 5 7
+- syntactic sugar
+  - makes a language sweeter
+  - adds usability to a language without adding functionality
+** DONE read learn you a haskell for great good chapter 2
+** DONE question 1
+   DEADLINE: <2016-10-04 Tue>
+email
+** DONE question 2
+   DEADLINE: <2016-10-04 Tue>
+explain how to write a function to return a*(x^2)+b*x+c
+** DONE question 3
+   DEADLINE: <2016-10-04 Tue>
+write a curryed function to return the function x-> ax^2 + bx + c and execute it in 
+- java
+- haskell
+- racket
+* lecture 5
+- basic list in functional languages
+  - lists are singly linked
+  - frequently immutable
+  - made from cons cells and the empty list
+    - cons cells are a pinter to a piece of data and the rest of the list
+- static typing
+  - a language is statically typed if you can work out the type of every expression at compile time
+  - a language is statically typed if there is an algorithm to determine the type of the expression
+
+** DONE question 4
+   DEADLINE: <2016-10-04 Tue>
+How many partial functions are there from { Scissors, Paper, Rock, Spock, Lizard } 2 to { Win, Lose } ?
+How many of these are fair and interesting?
+** DONE read chapters 3+4
+* lecture 6
+in functional languages functions are first class entities, first class means something like fully integrated into the
+language
+- first class
+  - create literals and/or use without naming
+  - use them as arguments or return types
+  - store them in arrays and other data structures
+  - read/write to/from files
+  - compare for equality
+  - order them
+  - look inside their contents
+- haskel function to determine length of a list
+length [] = 0
+length (_:xs) = 1 + length xs
+- fib (not great)
+fib n = if n == 0
+        then 0
+        else if n == 1
+             then 1
+             else fib(n-1) + fib(n-2)
+- fib good
+fib 0 = 0
+fib 1 = 1
+fib n = fib(n-1) + fib(n-2)
+- another fib
+fib n
+   | n == 0    = 0    
+   | n == 1    = 1    
+   | n < 0     = undefined
+   | otherwise = fib(n-1) + fib(n-2)
+* lecture 7
+  c(n) = 3n+1 if n is odd, n/2 if n is even
+* lecture 8 
+haskell merge sort:
+mergeSort [] = []
+mergeSort [x] = [x]
+mergeSort xs = merge front back where
+     front = mergeSort $ m `take` xs 
+     back = mergeSort $ m `drop` xs
+     m = length xs `div` 2
+     merge [] ys = ys
+     merge xs [] = xs
+     merge (x:xs) (y:ys) =
+         if y<x
+	 then y : merge (x:xs) ys
+	 else x : merge xs (y:ys)
+
+- to use recursion
+  1. I need a well ordered domain (for any subset there is a lease element)
+  2. I need to know the answers for base cases
+  3. I need to know how to link the answer of a general problem to the answer of a smaller problem
+- 
+* lecture 9
+- homeworks 1-4 are due oct 4
+- spent the whole class working on the same problem from lecture 7, started in haskell
+* lecture 10
+how to write zip in haskel (takes two lists and returns a list of pairs)
+
+zip _ [] = []
+zip [] _ = []
+zip (x:xs) (y:ys) = (x, y) : zip xs ys
+
+- strict vs lazy languages
+  - a language uses strict evaluation (is strict) if it always evaluates the arguments of a function 
+    before evaluating the body of the function
+  - a language is lazy if it  only evaluates function arguments when they are used
+
+consider:
+pi1 x y = x
+badloop x = badloopx
+pi1 true (badloop false)
+
+in a lazy language we would get true in a strict language we get stuck forever
+
+sq x = x * x
+sq (sq (sq (sq (1+1) )))
+-- a more haskelly way to do this would be
+sq . sq .sq . sq $ 1 + 1
+-- . is function composition
+
+- a lazy language would multiply 1+1 many times because it would try to evaluate things one layer at a 
+  time, a strongly typed language would multiply 1+1 once.
+  - no real lazy language would actually do this, a well designed interpreter/compiler will make sure 
+    arguments are computed 0 or 1 times
+
+- scheme is strict
+- haskell is lazy
+- java is strict
+- most languages are strict
+- smart laziness involves only evaluating an argument at most once
+
+(define (square x) (* x x))
+(define (side-effect)
+    (begin
+    (displayln "Hi")
+    2)) ;; returns 2 with the side effect of printing to the screen
+(square (square side-effect))
+
+- in a strict language Hi is printed once
+- in a lazy language square will fracture multiple times an side effect would be called multiple times
+  - sq (sq side-effect)
+    - sq (side-effect * side-effect)
+      - (side-effect * side-effect) * (side-effect * side-effect)
+- laziness only makes sense in pure (non-side-effecting) languages
+  - haskell is pure
+- a "thunk" is either
+  - a technique for creating a delayed computation (our use)
+  - a way to implement run time method selection especially in multiple inheritance languages
+
+
+- a thunk is one of two things
+  - a way of delaying an operation (our use)
+    - replace an expression with something that stands for it so we don't have to recompute a value
+  - a way of picking a method in a multi-inheritance language
+
+define f (Î» () (+ 2 3)) )
+Racket boxes
+box
+unbox
+setbox!
+
+(define g (box 5))
+(setbox! g "cat")
+
+;; a box is like a one element array
+
+g -> [] -> 5
+     | 
+     v
+   "cat"
+
+(define (delay f)
+    (box (cons #false f))
+)
+
+(define (force g)
+  (let ([contents (unbox g)])
+  (if (car contents)
+      (cdr contents)
+      (let ([result ((cdr contents))])
+           (setbox! g (cons #true result))
+	   result)
+  )
+  )
+)
+
+
+-------------------------------------------------------
+fib_nums = 0:1:zipWith (+) fib_nums (drop 1 fib_nums)
+
+this is fine as long as we don't try to compute all of them
+take 1000 fib_nums
+would work fine
+
+** DONE miderm
+   DEADLINE: <2016-10-12 Wed>
+- summarize laziness
+- summarize strictness
+- example where it makes a difference
+- explain what a thunk is and why we use it
+  - why do we have thunks in lazy languages
+    - so we don't have to evaluate arguments multiple times
+- which of the two languages we're studying are lazy
+- which is statically typed
+- why are functional languages tricky
+- recursion
+
+** DONE curry/uncurry functions
+f x y = x+y
+ff (x,y) = x+y
+
+- in haskell write an uncurry function so that (uncurry f) is the samme as ff.
+- in racket write a curry function
+
+* lecture 11
+- Environments
+  - abstractly an environment is a dictionary mapping identifiers to their meanings at some particular time
+
+public static int fact(int n) {
+  if (n == 0)
+     return 1;
+  else return n * fact(n-1);
+}
+
+stack:
+| fact | [3]n |               
+| fact | [4]n | <- stack frame
+| fact | [5]n |               
+| .    |      |               
+| .    |      |               
+| .    |      |               
+| main |      |               
+
+- stacks work fine for when you just have flat functions, or even functions with functions inside of them 
+  but when you start returning functions it gets a bit messy
+- environments in languages with recursion but w/o functions returning functions are usually implemented with stacks
+
+line (m, b) x = m * x + b
+
+-- more explicit currying
+line (m, b) = let 
+     f y = m * y + b
+     m f
+
+line30 = line (3, 0)
+line12 = line (1, 2)
+
+line30 15 --what does the memory diagram look like here
+
+- two ways of doing this
+  - line30 calls the compiler and you compile some code
+  - a function has a pair of pointers
+    - a code pointer (points to code common to line30 and line12)
+    - environment/closure pointer which points at some storage somewhere (probably the heap)
+      that has what we want
+* lecture 12
+- live
+  - data that will be used again
+  - implies reachable
+  - not computable
+- dead
+  - not that
+  - not computable
+- reachable
+  - data you can find by following pointers starting from global and stack variables
+  - computable
+- unreachable
+  - not that
+  - implies dead
+  - computable
+- tail position
+  - one chunk of sub-code is in tail position w.r.t. a surrounding piece of code if it will execute last
+- a tail-call is a call that is in tail position (usually w.r.t. some function)
+- at the point of a tail call the callee's environment s dead
+- tail optimization is the act of removing the callee's environment before starting a tail call
+- tail call optimization is just a call in a tail position, recursion isn't necessary
+  - important in recursion because that's where you're getting a lot of stack frames
+- 
+* lecture 13 [2016-10-19 Wed]
+- strategies for making tail recursive
+  1. generalize
+  2. use accumilator
+  3. keep a list of work to do
+- datatypes (haskel)
+  datatype Tree a = Empty
+                  | Branch a (Tree a)(Tree a) 
+  fred :: Tree Int
+  fred = Branch 3 (Branch 2 Empty Empty) Empty
+  
+  note: 
+  fred =  3
+         / \
+        / [empty]
+       2
+      / \
+     /   \
+    /     \
+ [empty] [empty]
+
+ makeTree [] = Empty
+ makeTree (x:xs) = Branch x Empty (makeTree xs) -- a long scragly tree, all to the right
+ 
+ makeTree xs = let
+          n = length xs
+          m = (n-1) `div` 2
+          ls = take m xs
+          r:rs = drop m xs
+          in Branch r (makeTree ls) (makeTree rs)
+
+ countNodes [] = 0
+ countNodes (Branch _ l r) = 1 + (countNodes l) + (countNodes r)
+ 
+ countNode = helper 0 [] where
+   helper acc list (Branch _ l r) =
+     helper (acc + 1) (r:list) l
+   helper acc list Empty = dispatch acc list
+     dispatch acc [] = acc
+     dispatch acc (tree:work) = helper acc work tree
+* lecture 15 [2016-10-31 Mon]
+- monads
+  - ?
+- persistent
+  - cant see it change
+  - ownership issues are gone
+  - data can be shared
+  - copies can be shallow
+  - equality can be reduced to pointer equality (with work)
+- ephemeral
+  - can see it change
+  - some classical data stuctures (array) have no obvious persistent analog
+  - classical algorithms need to be adapted to persistent data structures
+- persistent data structures allow us to think in new ways
+* lecture 16 [2016-11-02 Wed]
+Queue:
+data Queue a = Q[a][a][a] -- Q head, worker, tail
+-- the length of the head == length of the worker + the length of tail
+* lecture 17 [2016-11-04 Fri]
+- Monad
+  - has the following functions
+    return :: a -> m a -- takes a something to a container of somethings
+    (>>=) :: m a -> (a -> m b) -> m b
+  - once you have a monad you can use do notation
+  - lists as monads
+    return a = [a]
+    aList >>= f = concat(map f aList)
+  - do
+    - do
+       a <- [10,20,30]
+       b <- [1,2]
+       return $ a + b
+      - syntactic sugar for
+	  [10,20,30] >>= (\ a ->
+            [1,2] >>= (\ b -> [a+b]))
+** TODO midterm exam
+   DEADLINE: <2016-11-07 Mon>
+- recursion
+- tail position
+- tail call
+  - what's special about them?
+  - garbage collection
+  - how do they impact time and space
+- liveness
+- deadness
+- tail recursion
+  - how?
+    - generalize
+    - list of sub problems
+    - accumalator
+    - continuations
+- continuations
+- static vs dynamic binding
+  - static means you look around the code
+  - dynamic means you go up the call stack
+  - how do scheme and haskell use by default (static)
+- paramertarize
+  - force dynamic 
+- persistent vs ephemeral
+  - what is an example of a persistent Java class (will be on midterm)
+    - String
+  - how would you make a persistent queue in Haskell
+    - use at least two lists, a head and a reverse tail
+- haskell type classes
+  - how to define
+  - instances
+  - what is a Monad
+    - why is it special
+    - desugar a do block
+* lecture 18 [2016-11-09 Wed]
+- 
+* lecture 19 [2016-11-14 Mon]
+- haskell
+  - f x = 3 * x + 1
+- prolog
+  - f(X, Y) :- Y is 3 * X + 1.
+    - uppercase is a variable
+    - is operator numerically evaluates its righthand side then the expression is true if both sides are equal
+    - syntactic sugar for '+'('*'(3,x),1)
+  - prolog is relational not functional
+  - ?- f(3,11).
+    - False
+  - ?- f(3, 10).
+    - True
+  - ?- f(3, A).
+    - A = 10
+  - f(X, 10).
+    - an error
+  - ?- append(X, [4,5,6], [1,2,3,4,5,6]).
+    - X = [1,2,3]
+  - ?- append(X, X, [1,2,3,4,5,6]).
+    - False
+  - ?- append(X, Y, [1,2,3,4,5,6]).
+    - X = [], Y = [1..6];
+  - n1.
+    - is just a fact which is equivalent to ..
+      - n1().
+  - fat(cat, fred(2, 3+1))
+    - an assertion
+  - "think of prolog like partially digested natural language"
+  - 
+  - directlyNorthOf(pg, redRock).
+  - directlyNorthOf(redRock, stoner).
+  - directlyNorthOf(stoner, hixon).
+  - directlyNorthOf(hixon, quesnel)
+  - northOf(X, Y) :- directlyNorthOf(X, Y).
+  - northOf(X, Y) :- directlyNorthOf(X, Z), northOf(Z, Y).
+  - 
+  - prolog is all about universal horn clauses, where a universal horn clause is a universally 
+    quantified disjunction of atomic clauses, all but one of which is negated
+  - practical notes
+    - ?- is the prompt in the interpreter
+    - ?- consult("filename.pl"). will read a file
+    - ?- make. will reconsult anything that's been consulted in this session
+    - ?- help(help). should give you a gui based browser
+* lecture 20 [2016-11-16 Wed]
+- prolog syntax
+  - comments
+    - /*block comments*/
+    - % line comments
+  - strings are "double quoted" with \ escapes
+  - `backticks are a string made of a list of chars'
+  - Variables start with Capitals
+  - _ is a wildcard
+  - atoms start with lowercase letters or can be quoted with 'single quotes'
+  - lists are built using [] (empty) and [.|.] (cons) with lots of sugar support
+    - ex: [1,2,3] = [1 | [2 | [3 | [] ] ] ]
+- prolog append
+  append([], Ys, Ys).
+  append([X|Xs], Ys, [X|Zs]) :- append(Xs, Ys, Zs).
+- 
+- λ-calculus
+  - (λ (x) (λ (y) (λ (z) ... )))
+  - λx.(x is bound in here)
+  - the pure λ-calculus is built from variables, abstractions and applications f(x)
+  - example
+    - flip f x y = f y x
+    - λfxy.[f(y)](x)

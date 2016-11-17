@@ -1,0 +1,585 @@
+* Lecture 1
+Partial function
+ - not every element in the domain has to have an answer
+
+total functions are a subset of partial functions
+
+** Properties of relations
+ - Reflexive: aRa
+ - Irreflexive: not aRa
+ - Transitive: if aRb, bRc, then aRc
+ - Symmetric: aRb => bRa
+ - Asymmetric: aRb => not bRa (Asymmetric => ?Irriflexive)
+*** Example: relate < on the set of integers
+  - transitive
+  - asymmetric
+  - irreflexive
+
+* Lecture 2
+** Equivalence relations: reflexive, symmetric, and transitive
+
+** Graphs
+- finite state automata are graphs
+- a graph consists of two sets
+  - a set V of vertices (or nodes)
+  - a set E of edges
+    - an edge consists of a pair of vertices in V, if the edges are ordered the graph is a diagraph
+- walk: a sequence of edges-the filish vertex of eacc=h edge is the start vertex of the next edge
+- path: a walk with no repeated edges
+- simple path: a path with no repeated vertices
+
+** Tree
+- tree is a kind of diagraph
+  - it has one distinguished vertex called the root
+  - there is exactly one path from the root to each vertex
+  - the level of a vertex is the length of the path to it from the root
+- terminology
+  - if there is an edge from A t B then A is the parent of B, B is the child of A
+  - a leaf is a node with no children
+  - the height of a tree is the largest level number of any vertex
+
+** Proof Techniques
+- importance
+  - because this is a formal subject the textbook is full of proofs
+  - proofs are encapsulated understanding
+  - you may be asked to learn a very few important proofs
+- proof by induction
+  - prove something about P1 (the basis)
+  - prove that if it is true for Pn then it is true for Pn-1 (the inductive assumption)
+  - conclude that it is true for all Pi
+- proof by contradiction
+  - assume some fact P is false
+  - show that this leads to a contradiction
+  - conclude P must be true
+
+** Main Contents
+*** Three most important basic concepts
+**** Languages (related concepts: strings, words, alphabets)
+- an alphabet is a finite non-empty set A of objects called symbols
+- an n-tuple of symbols of A is called a word or string on A
+  - Ex: (a,b,c,d) is written as abcd
+- length of a word (or a string) w, denoted by |w| is the number of symbols in w
+- null word, empty string (lambda symbol or symbol that looks like euro symbol)
+
+* Lecture 3
+- automata
+  - simple model of a computer
+  - an automaton
+    - has some form of input
+    - has some form of output
+    - has internal states
+    - may or may not have some form of storage
+an automaton operates in a discrete time frame. at any gien time the input mechanism of the automaton scans a particular
+symbol on the input file, checking its current internal state, finda transition function, take a certain action (write or not write), move to a symbol to the left
+or right ad change internal state
+
+   snapshot:
+the particular internal state, the current position of the read(write)
+
+- FSM is an automata
+* Lecture 4
+- Finite State Automata
+- Deterministic Finite (State) Automata
+  - DFAs are
+    - deterministic
+      - there is no element of choice
+      - finite number of states and arcs
+      - only yes no answer
+  - drawn as a graph 
+    - states are circles
+    - one state is the start state
+    - several states can be designated as final states (including the start state)
+    - arcs between states represent transitions
+  - A DFA is a 5-tuple: M = (Q, SIGMA, T, q0, F)
+    - Q a set of finite states
+    - SIGMA a finite alphabet (input symbols)
+    - T a transition function Q*SIGMA -> Q
+    - q0 the initial state
+    - F <= (subset) of Q, a set of final states
+  - convention
+    - Q - set of states, symbols q, p with or without subscripts are states, q0 is always the start  
+transition table
+|    | 0  | 1  |
+|----+----+----|
+| q0 | q4 | q1 |
+| q1 | q3 | q0 |
+| q2 | q0 | q3 |
+| q4 | q1 | q2 |
+
+* Lecture 5
+- language defined by DFA
+  - extending the transtition function to strings
+  - the languages accepted by DFA's are called regular languages
+- the language accepted by DFA M is defined as:
+  L(M) = (w in Σ^*: δ())(incomplete definition)
+** DONE homework
+   DEADLINE: <2016-09-22 Thu>
+- dont submit
+- exercises:
+  - 2.2.4 (a)
+  - 2.2.8
+  - 2.2.10
+** DONE quiz
+   DEADLINE: <2016-09-23 Fri>
+** DONE read the textbook
+* Lecture 6
+- non deterministic finite state automata
+  - due to nondeterminism the same string may cause an NFA to end up in one of several different states, some of which may be final while 
+    others are not. the string is accepted iff one of the endinng steps is a final state
+  - an NFA is a 5 tuple M = (Q, SIGMA, T, q0, F)
+    - Q , a set of states
+    - SIGMA , a finite alphabet
+    - T a transition function from QxSIGMA -> 2^Q. should be total
+      - a T(q, a in SIGMA) may equal the empty set
+    - q0 in Q, the initial state
+    - F is a subset of Q, the set of final states
+  - 
+    
+* Lecture 7
+** DONE homework, seudo-code (submit)
+   DEADLINE: <2016-09-28 Wed>
+write a program to solve the following problem:
+- given an NFA M = (Q, Σ, δ, q0, F) and an input string of M w, you are able to determine if w is in L(M)
+  - finding a key problem
+* lecture 8
+- the equivalence of DFA's and NFA's
+  - Theorem Let L be a set accepted by and NFA then there exists a deterministic finite automaton that accepts L
+  - NFA M = (Q, SIGMA, T, q0, F)
+  - define a DFA as M' = (Q', SIGMA, T', [{q0}], F') such that L(M') = L(M)
+    - How?
+    - subset construction
+      1. Q' = {[S] : S is a subset Q}
+      2. F' = {[S]} : S is subset Q, S intersect F != {}}
+      3. for every S subset Q and a in SIGMA
+	 - 
+** DONE homework (do at home)
+   DEADLINE: <2016-10-03 Mon>
+exercise 
+2.3.1
+ (after next class)
+2.3.4 (a)
+
+* lecture 9
+- always an exam question
+M = ({q1,q2,q3}, {a,b}, δ, q1, {q2})
+δ:
+|    | a       | b       |
+| q1 | {q1,q2} | {q2,q3} |
+| q2 | {q1}    | ∅       |
+| q3 | {q3}    | {q2,q3} | 
+- convert DFA to NFA 
+(already the same)
+for arbitrary DFA M = (Q, Σ, δ, q0, F)
+to M' = (Q', Σ', δ', q0', F')
+Q = {q0,q1,q2}
+δ:
+|     | a  | b  |
+| q0  | q0 | q1 |
+| q1  | q2 | q0 |
+| *q2 | q1 | q1 |
+
+Q' = {q0,q1,q2}
+δ':
+|     | a    | b    |
+| q0  | {q0} | {q1} |
+| q1  | {q2} | {q0} |
+| *q2 | {q1} | {q1} | 
+
+picture of both is the same
+  
+** DONE homework 
+   DEADLINE: <2016-10-03 Mon>
+- exercises
+  - 2.4.1 (a,b,c)
+  - 2.4.2
+  - 2.3.4 (b)
+* lecture 10
+- non deterministic finite staate automata with ϵ transitions (ϵ-NFA)
+  - examples
+    {a^nb|n >= 0} U {a^(2n)|n >= 1}
+    you could make two different NFA's, one for each side of the union then have a seperate start state
+    with a branch labeled ϵ to each NFA, epsilon means no symbol so you can start from either NFA with the input
+    δ:
+    |     | a    | b    | ϵ       |
+    | q0  | ∅    | ∅    | {q1,q3} |
+    | q1  | {q1} | {q2} | ∅       |
+    | *q2 | ∅    | ∅    | ∅       |
+    | q3  | {q4} | ∅    | ∅       |
+    | q4  | {q5} | ∅    | ∅       |
+    | *q5 | {q4} | ∅    | ∅       |
+  - formal notation of ϵ-NFA
+    an ϵ-NFA is a 5-tuple : M = (Q,Σ,δ,q0,F) where:
+    - Q : a finite set of states
+    - Σ : a finite alphabet
+      - ϵ is not an input symbol in Σ
+    - δ : a transition funtion from Q x (Σ U {ϵ}) -> 2^Q 
+    - q0 in Q, the initial state
+    - F subset of Q : a set of final states
+  - ϵ-closure
+    q in ϵ-closure iff there is a walk from p to q whos arecs are all labeled ϵ
+    - example: figure 2.21
+    - important notice
+      - the walk length 0 has no arcs so we say all the walks with length 0 are labeled ϵ
+  - extending the transition function to strings δ -> \delta-hat
+    - \delta-hat(q,w) contains r iff there iss a walk in the transition graph from q to r labelled w
+    - formal definition
+      - \delta-hat(q,ϵ) = ϵ-closure(q)
+      - \delta-hat(q,xa) = ϵ-closure(\delta-hat(q,x),a) 
+    - \delta-hat(q,a) = \delta-hat(q,a) is not always correct
+
+** DONE upload homework questions and 444 slides
+   DEADLINE: <2016-09-30 Fri>
+** DONE move notes back into google drive
+   DEADLINE: <2016-09-30 Fri>
+** homework (may have a due date)
+- exercises:
+  - 2.5.1
+  - 2.5.2
+** DONE quiz
+   DEADLINE: <2016-10-03 Mon>
+   convert nfa to dfa
+* lecture 11
+- 
+- δ^ != δ
+* lecture 13 [2016-10-07 Fri]
+- Regular Expressions
+  - obtained by applying the following rules a finite number of times
+    - if E1 is a regex then so is (E1) it denotes L(E1)
+    - if E1 is a regex then so is E1^* it denotes (L(E1))^*
+    - if E1 and E2 are regex's then so is E1 . E2, it denotes L(E1) . L(E2)
+    - if E1 and E2 are regex's then so is E1 + E2, it denotes L(E1) U L(E2)
+    - Precedence: *, . (juxtaposition (dot operation)), +
+    - notice parentheses are just used for grouping
+  - Examples
+    - a+bc^* denotes the language
+      L(a+bc^*) =
+      L(a) U L(b)(L(c))^* =
+      {a} U {b}{c}^* =
+      {a} U {b, bc, bcc, bccc, ...} =
+      {a, b, bc, bcc, ...}
+    - (a + bc)^* denotes the language
+      L((a+bc)^*) =
+      (L(a+bc))^* =
+      (L(a) U L(b)L(c))^* =
+      ({a} U {b}{c})^* =
+      {a, bc}*
+  - building regular expressions
+    - assume Σ = {a,b,c}
+    - Zero or more ab = (ab)*
+    - one or more ab = (ab)(ab)*
+    - zero or one a = ϵ+a
+    - any string at all = (a+b+c)* = Σ*
+    - any nonempty string = (a+b+c)(a+b+c)*
+    - any string not containing a = (b+c)*
+    - any string containing exactly one a = (b+c)* a (b+c)*
+    - all strings containing no more than three a's = (b+c)*(a+ϵ)(b+c)*(a+ϵ)(b+c)*(a+ϵ)(b+c)*
+    - all strings containing at least on occurrence of each symbol in Σ = XaXbXcX + XaXcXbX + XbXaXcX + XbXcXaX +XcXaXb + XcXbXaX where X = (a+b+c)*
+    - all strings which contain no runs of a's greater than two = (b+c)*(ϵ+a+aa)(b+c)*((b+c)(b+c)*(ϵ+a+aa)(b+c)*)*
+    - all strings in which runs of a's have lengths that are multiples of three = (b+c+aaa)*
+  - some simplification rules
+    - ∅E = E∅ = ∅
+    - ∅ + E = E + ∅ = E
+    - (ϵ + E)* = E*
+    - E1 + E1E2* = E1E2*
+
+** homework
+exercises:
+- 3.1.1
+- 3.1.2
+- 2.5.1
+- 2.5.2
+* lecture 14 [2016-10-12 Wed]
+- DFA == NFA == ϵ-NFA
+  - languages accepted by these are regular languages
+  - Regular Expressions can represent every regular language
+    - DFA == NFA == ϵ-NFA == regex's
+- finite automata and regex's
+  - from regex to ϵ-NFA
+    - Theorem: r is a regex, there exists an ϵ-NFA M, such that L(M)=L(r)
+      - proof by induction:
+	- base: zero operators
+	  - NFA accepts ∅, ϵ, a
+	  - show that adding operations can be reflected in the NFA
+** DONE put homework online
+   DEADLINE: <2016-10-12 Wed>x(y^k)zx(y^k)zx(y^k)z
+* lecture 16 [2016-10-17 Mon]
+- finite state automata and regular expressions
+  - theorem
+    - L is a regular language, then there exists a constant m >= 1 st. for any w ∈ L
+      with |w| >= m we can break w into three sub-strings, w = xyz st.
+      - y ≠ ϵ
+      - |xy| <= m
+      - for all k ≥ 0, the string x(y^k)z ∈ L
+    - proof
+      - for any choice of m
+      - for some w ∈ L that we get to choose (one length at least m)
+      - for any way of decomposing w int xyz, so long as |xy| isn't greater than m and y ≠ ϵ
+      - we can choose a k st. x(y^k)z is not in L, we can view this as a game: our opponent makes moves 1 and 3
+	(choosing m and xyz) and we make moves 2 and 4 (w and k)
+	- show we can always beat or opponent
+    - example
+      - let Σ = {a,b}m show that L = {ww^R : w ∈ Σ*} is not regular (superscript R means reverse)
+	arbitrary m ≥ 1, let w = (a^m)(b^m)(b^m)(a^m), arbitrary x,y,z ∈ Σ*, w = xyz, y ≠ ϵ, |xy| ≤ m
+	xyz = (a^m)(b^m)(b^m)(a^m)
+	xy = a^t where t <= m
+	x = a^s where s < t ≤ m
+	y = a^(t-s)
+	x(y^0)z = (a^s)(b^m)(b^m)(a^m)
+	not regular, (a^s)(b^m)|(b^m)(a^m) right side is bigger (more a's)
+      
+
+** TODO homework
+- exercises
+- 3.2.1 e
+- 3.2.3
+** DONE midterm
+   DEADLINE: <2016-10-19 Wed>
+- midterm
+  - convert ϵ-NFA -> DFA | NFA
+  - DFA -> NFA | ϵ-NFA
+  - find regex from some sort of (ϵ-){0-1}[DN]FA (3.6)
+  - concatenate or union of two languages, construct *FA to accept it
+  - lazy subset construction
+** TODO homework 
+- 4.1.1 c
+- 4.1.2 a
+- 4.1.1
+- 4.1.2
+* lecture 17 [2016-10-21 Fri]
+- no means no, how to say a language is not regular
+  - pumping lemma
+- regular grammars
+  - a grammar G = (V, T, P, S)
+    - V: finite set of symbols, variables
+    - T: finite set of terminal symbols
+    - S is in V, start symbol
+    - P: finite set of productions or rules X->Y
+    - V and T are non-empty and disjoint
+    - suppose we have the string uxv, we can use the production x->y to the string to obtain uyv,
+      write uxv => uyv
+    - that is uxy derives uyv
+  - a grammar is right-linear if all productions are of the form A->xB, A->x
+    - A, B in V and x in T*
+  - a grammar is left-linear if all productions are of the form A->Bx, A->x
+  - regular grammars are either right or left linear
+  - key points: construct the NFA
+** DONE quiz, pumping lemma
+   DEADLINE: <2016-10-28 Fri>
+* lecture 18 [2016-10-24 Mon]
+- Theorem: R is a regex, then there exists a right-linear grammar G, such that L(G)=L(R)
+  - DFA to grammar
+    - S = q0
+    - δ(qi, a) = qj : qi -> aqj
+    - qk ∈ F: qk -> ϵ
+  - it should also work for NFA and ϵ-NFA, example: aab*a
+    - δ(q0, a) = {q1}
+    - ...
+    - δ(q2,a) = {qf}
+    - qf ∈ F
+- three ways of defining a regular language
+  - finite automaton
+  - regex
+  - regular grammar
+- Membership
+  - decide if w is in a regular language
+- Finiteness
+  - determine if a language is empty, finite, or infinite
+- Equivalence
+  - whether two languages are equal
+- Context Free Languages
+  - context free grammar
+    - G = (V, T, P, S)
+    - a context free grammar imposes the following rules on elements of P
+      - A -> x where A ∈ V , x ∈ (V U T)*
+  - is a context free language a regular language
+    - yes because G is right linear
+  - 
+ 
+** DONE assignment hand in
+   DEADLINE: <2016-10-28 Fri>
+1. construct a right-linear grammar for the language denoted by regex ((aab*ba)*)
+2. construct an NFA or ϵ-NFA that accepts the language generated by the grammar
+G = ({S,A,B},{a,b},P,S) where
+P:
+S -> abA
+A -> baB
+B -> aA|bb
+
+** TODO homework
+write an algorithm that takes a DFA M and determines its finiteness (just sudo-code)
+- exercises
+  - 5.1.1 a,b
+  - 5.1.2 a
+* lecture 19 [2016-10-26 Wed]
+- L(G) = {w | w in T*, S =*> w} (S goes to w in 0 or more steps)
+- sentenial forms: a in (V U T)* st. S=*>a we say it is a sentential form
+  - leftmost derivations
+    - when a string has more than one variable, replace the left one first
+  - rightmost derivition
+    - when a string has more than one variable, replace the right one first
+* lecture 20 [2016-10-28 Fri]
+- parse tree
+  - derivations
+    - using productions from head to body
+  - derivation tree (parse tree)
+    S -> AB
+    A -> aAb|epsilon
+    B -> bB|epsilon
+  - parse tree for S =*> aabbbb
+                                                 S
+                                                / \
+                                               /   \
+                                              A     B
+  - start at S, every symbol produced at each step is a new branch from the base
+* lecture 21 
+pushdown atomata (missed this one)
+* lecture 22 [2016-11-02 Wed]
+- pushdown automata
+- drawn as follows
+| input   |          0 | 0           |         1 | 1        | epsilon  | epsilon   |
+|---------+------------+-------------+-----------+----------+----------+-----------|
+| stack   |          0 | Z0          |         0 | Z0       | 0        | Z0        |
+|---------+------------+-------------+-----------+----------+----------+-----------|
+| * -> q1 |   emptyset | emptyset    |  emptyset | emptyset | emptyset | {(q2,Z0)} |
+| q2      | {(q2, 00)} | {(q2, 0Z0)} | and so on 
+- is a 7-tuple M = (Q, SIGMA, upside-down L, delta, q0, Z, F) where
+  - Q: set of states
+  - SIGMA: input alphabet
+  - L: stack alphabet
+  - delta: subset of Q x (Sigma U {epsilon}) x L x Q x L*
+  - q0 in Q: start state
+  - Z in L: initial stack symbol
+  - F subset of Q: set of accepting states
+- example
+  - PDA P = (Q, Sigma, uL, delta, q0, Z0, F) for L = {ww^R|w in {0,1}*}
+    - Q = {q0,q1,q2}
+    - Sigma = {0, 1}
+    - uL = {0, 1, Z0}
+    - F = {q2}
+    - delta = 
+| input |               0 |        0 | 0         |        1 |               1 | 1         | epsilon   | epsilon   | epsilon         |
+|-------+-----------------+----------+-----------+----------+-----------------+-----------+-----------+-----------+-----------------|
+| stack |               0 |        1 | Z0        |        0 |               1 | Z0        | 0         | 1         | Z0              |
+|-------+-----------------+----------+-----------+----------+-----------------+-----------+-----------+-----------+-----------------|
+| -> q0 |        {(0, 0)} | {(0, 1)} | {(0, Z0)} | {(1, 0)} |        {(1, 1)} | {(1, Z0)} | {(q2, 0)} | {(q2, 1)} | {(q2, Z0)}      |
+| q2    | {(q2, epsilon)} |          |           |          | {(q2, epsilon)} |           |           |           | {(q3, epsilon)} |
+| *q3   |                 |          |           |          |                 |           |           |           |                 | 
+- |- means can move to
+- (q0, 0110, Z0) |- (q0, 110, 0Z0) |- and so on
+- (state, remaining symbols, stack) |- (state, remaining symbols, stack)
+- this is how you show a PDA can take a word
+** TODO homework pushdown automata
+- exercises
+  - 6.2.1 c (accept by final states)
+  - 6.2.2 a
+  - 6.2.5 a
+  - if those are hard
+    - PDAs for the picture on your phone
+  
+* lecture 23 [2016-11-04 Fri]
+- PDA accepted by final state and PDA accepted by empty stack
+  - accept by final state is equivalent to accept by empty stack
+  - only need to do accept by empty state for class
+- DPDA deterministic PDA
+  - delta(q, a, X) has at most one member for any q in Q, a in Sigma U {epsilon}, and X in Gamma (uL)
+  - if delta(q,a,X) is nonempty for some a in Sigma then delta(q,epsilon,X) must be empty
+  - languages defined by DPDA are a proper subset of the context-free languages
+- Chomsky Normal Form Grammar
+  - the grammar where all the productions are of of form A -> BC or A -> a (A,B,C are variables, a is a terminal)
+  - Theorem: If G is a CFG and L(G) - {epsilon} != {} then there is a CNF grammar G1 st. L(G1) = L(G) - {epsilon} 
+* lecture 24 [2016-11-07 Mon]
+- pumping lemma for context free language
+- Theorem: let L be a CFL. then there exists a constant n >= 1 st. if z is any string in L st. |z| >= n, we can find u,v,w,x,y st. z = uvwxy
+  1. |vwx| < n
+  2. vx != epsilon
+  3. for all i >= 0, uv^iwx^iy in L
+- Must hold for all cases
+- example: L = {0^n1^n2^n|n >= 1}
+  - for any n >= 1 let z = 0^n1^n2^n, any u,v,w,x,y st z = uvwxy, |vwx| <= n
+  - case 1 vwx = 0^m, m <= n
+  - case 2 vwx = 0^a1^b, a+b <= n, a,b >= 1
+  - case 3 vwx = 1^m
+  - case 4 vwx = 1^a2^b
+  - case 5 vwx = 2^m
+- possible question, shown proof that a language is not context free find the error
+
+** TODO homework
+- 
+- exersises
+- 7.2.1 a
+- 7.2.1 d
+* lecture 25 [2016-11-09 Wed]
+- Theorem: if G is a CNF grammar, suppose the longest path of a parse tree for w is n, then |w| <= 2^(n-1)
+- Regular languages
+  - DFA
+  - NFA
+  - epsilon-NFA
+- regular languages are a subset of Context free langues
+  - PDA
+- which are a subset of Recursivly enumerable languages
+  - turing machines
+- turing machine, RE sets and Undecidability
+  - some problems
+    - the halting problem
+      - program P with input w, can you make a program H(P, w) that will print {1 if P(w) halts, 0 if P(w) does not}
+    - 3X + 1 problem
+* lecture 26 [2016-11-14 Mon]
+- halting problem
+  - final exam, show prove of its non-existence
+- 3x+1 prblem
+  - collatz
+  - if halting problem were solved 3x+1 could be solved
+    - prove
+- fermut's last theorum
+  - for any n >= 3, any x,y,z in z^f, x^n + y^n != z^n
+- turing machine
+  - shortcomings of dfas and pdas
+    - good at simple patterns but not ...
+      - how would they compute 2+3
+	- it may be possible to make a pda that accepts 2+3=5 and reject 2+3=n where n!= 5 
+	  but this is not the same as computing 2+5
+    - computer needs to read a problem then write the answer on a output tape
+| .B |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   | .. |
+       /\
+       rw head
+- (q, s, q', s', L/R)
+  - q: state
+  - s: current stack
+  - q': new state
+  - s': new stack
+  - L/R: move L or R
+* lecture 27 [2016-11-16 Wed]
+- turing machine
+  - 7-tuple
+  - P = (Q, Sigma, uL, delta, q0, B, F)
+    - Q is a finite set of states
+    - Sigma is a finite alphabet of input symbols
+    - uL is a finite alphabet of tape symbols; Sigma is always a subset of uL
+    - delta is the transition function, it is a partial function on Q x uL
+      - delta: Q x uL -> Q x uL x {L,R}
+	- ex: delta(q1, a) = (q2, b, L)
+	  - written as: (q1, a, q2, b, L)
+    - q0 in Q is the start state
+    - B in uL - Sigma: blank cells
+    - F subset of Q is the set of accepting states
+  - ID of Turing machine: aqB     (a is alpha I think, B is Beta)
+    - instantaneous description, a is the symbols to the right, q is the current state, B is the curent symbol and the everything to the right
+  - L(P) = {w|q0w |*- aqfB}
+    - qf in F
+  - turing machine for L = {0^n1^n|n >= 1}
+    - P = (Q, Sigma, uL, delta, q0, B, F)
+    - Q = {q0,1,q2,q3,q4}
+    - F = {q4}
+    - Sigma = {0,1}
+    - uL = {0,1,x,y,B}
+    - 
+    - transitions can be broken into 3 parts
+      - replace the leftmost 0 and leftmost 1
+	- delta(q0, 0) = (q1, x, R)
+	- delta(q1, 0) = (q1, 0, R)
+	- delta(q1, y) = (q1, y, R)
+	- delta(q1, 1) = (q2, y, L)
+      - and so on, turing machine programming is hard, we will not be expected to do it
+* lecture 28 [2016-11-17 Thu]
+- presentation on routing
+  - read the textbook

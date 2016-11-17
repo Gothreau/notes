@@ -1,0 +1,82 @@
+* project ideas 
+** dnd client
+** tandy 1100fd tetris
+** wow auction monitor
+- leave running in amazon cloud
+  - generate hourly reports
+- output
+  - a sortable list of opportunities
+    - sort by
+      - cost
+      - return
+      - return/cost
+    - an oportunity is
+      - an item that has some set of items at one cost tier that if that set were bought and relisted
+	to undercut the next tier up would turn a profit
+** kodi sync
+- api for player
+  - http://mirrors.kodi.tv/docs/python-docs/16.x-jarvis/xbmc.html#Player
+- showgoers extention
+  - file:C:\Users\brrwa\Downloads\showgoers (on desktop)
+- definitions
+  - ct = client timestamp (relative)
+  - rt = remote timestamp (relative)
+  - rtt = round trip time, the time required to send a message and recieve a confirmation
+  - k = the maximum allowed delta (probably 1 second + rtt/2)
+- on start
+  - host
+    - wait for handshake request
+    - return handshake with current system time and ct as well as currently paused as a bool
+    - recieves handshake confirmation with remote system time
+    - compute rtt
+    - wait for remote status confirmation
+    - enable handlers
+  - guest
+    - send handshake request
+    - recieve remote system time and rt as well as currently paused
+    - compute rtt
+    - confirm handshake with current system time
+    - pause
+    - go to rt
+    - if currently paused == false
+      - play
+    - confirm playing status
+    - enable handlers
+- every n seconds
+  - host
+    - recieve rt
+    - compute delta = ct - rt
+    - if delta > k
+      - pause for delta seconds
+      - return 0 to guest
+    - else if delta < -k
+      - send delta to guest
+    - else
+      - send 0 to guest
+  - guest
+    - sent ct to host
+    - recieve delta from host
+    - pause for delta seconds
+- handlers (both)
+| handler | initiator                         | remote                                                    |
+| play    | play, send play reqest with ct    | recieve play request, jump to rt if abs delta > k, play   |
+| pause   | pause, send pause request with ct | recieve pause request, jump to rt if abs delta > k, pause |
+| seek    | seek, send seek request with ct   | recieve seek request, jump to rt                          | 
+- ui
+  - settings
+    - port
+  - 
+** dice game
+- implement in haskell, c, python, js, and java
+** dvd ripping application 
+- you tell it the name of the show, it looks it up and gets metadata
+- you put in disks in order, it rips them, names them, and asks for the next disk
+* school
+* food
+|        | Mon      | Tue                  | Thu              | Fri     | Sat            | Sun                  |
+|--------+----------+----------------------+------------------+---------+----------------+----------------------|
+| Lunch  | X        | X                    | X                | X       | Grilled Cheese | Eggs and sausage     |
+| Dinner | Hot dogs | Perogies and sausage | kebabs and salad | Burgers | tacos          | bbq meat and veggies |
+
+** shopping list
+

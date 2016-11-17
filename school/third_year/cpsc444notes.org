@@ -1,0 +1,467 @@
+* lecture 1
+- teaches through student presentations?
+- network structures and layering
+  - the french had minitel first
+  - internet caught on because it was a network of networks
+  - phone switches are smart phones are dumb
+    - computers are smart, networks are dumb
+  - internet scaled pretty good
+    - millions of devices always connected
+  - disadvantages of using phone network for internet
+    - bandwidth
+      - voice takes a fixed bandwidth, data is bursty
+  - packet switching
+  - arpa net
+    - universities
+  - mid seventies the various private networks started getting connected together
+    - inter-networking
+  - 1991 commercial trafic started flowing
+  - ISO/OSI reference model
+
+onion skin model of a message
+| layer        | what it does                                                                                           |
+|--------------+--------------------------------------------------------------------------------------------------------|
+| application  | end to end,                                                                                            |
+| presentation | end to end,                                                                                            |
+| session      | end to end,                                                                                            |
+| transport    | end to end,                                                                                            |
+| network      | concerned with A->B, may go through several link layers a device with network->pysical is a router     |
+| link         | transports between nodes (including simple intermediate relays), perhaps some error correction.        |
+|              | statistically reliable communication over an unreliable channel, a device that just has link and       |
+|              | physical layers is a bridge or a switch                                                                |
+| physical     | sends and receives bits, needs to know where bits begin and end (bit boundaries), PLL phase lock loops |
+
+modern model
+| Application |
+| Transport   |
+| Network     |
+| Link        |
+| Physical    |
+
+* lecture 2
+# application  #                                                          # application  #
+# presentation #							  # presentation #
+# session      #							  # session      #
+# transport    #							  # transport    #
+# network      # -------------------------------------#router/switch#---  # network      #
+# link         # ----------------------------#bridge#-------------------  # link         #
+# physical     # ----------------#repeater#-----------------------------  # physical     #
+
+- time division multiplexing
+  - send pieces of multiple calls on a phone line on the same line, give each call a section of time
+- frequency division multiplexing
+  - send different calls on different frequencies on the same line
+- packet switching
+  - for networking, only devices that are using bandwidth get bandwidth, bandwidth is not
+    allocated to a machine that isn't sending packets
+- protocols can be
+  - connection oriented
+    - high overhead, reliable
+    - TCP
+  - connectionless
+    - send off packets and hope they make it in whatever order
+      - let the protocol user deal with dropped packets
+      - unreliable
+    - UDP
+- TCP
+  - a bit slower but reliable, built in error handling
+- UDP
+  - faster but no built in error handling
+- ATM asynchronous transfer mode
+  - smarter routing
+  - not fully implemented in internet
+    - may not be a direct path for ATM from A to B
+- internet developed in mid seventies in stanford research institute
+  - initially machines were connected with a cable, everybody heard everybody
+* lab 1
+structure of the internet
+- packet is some data with a source and destination address
+  - every step along the way the destination will be analyzed then sent in the right direction
+  - packets are stateless
+* lecture 3
+- how do we communicate
+  - common language
+  - manners
+    - don't interupt
+  - events
+    - speaking
+    - listening
+** DONE presentation 
+   DEADLINE: <2016-10-04 Tue>
+3.3, 2.7.1 connectionless protocol and show udp
+* lecture 4
+- application layer
+  - how are the applications structured?
+    - developmental world
+      - collection of programs
+    - operational world
+      - collection of processes
+	- structured to solve problems or provide services
+	- requires coordination
+	  - role help effective communication
+    - client - server
+    | servers        | clients     |
+    | serve          | get service |
+    | few            | many        |
+    | always running | come and go |
+    | scalable       |             |
+    | secure         |             |
+  - applications
+    - file transfer
+      - ftp
+    - web
+      - http(s)
+    - email
+      - smtp
+    - games
+    - social media
+  - what is the unit of communication?
+    - messages
+    - elements required for communication
+      - destination
+      - protocol
+  - how do we assign addresses?
+    - every pc having a number would be a hastle to organize
+      - give blocks of high level addresses to isp/business and they dole it out from there
+    - unique per application (ip, port)
+      - socket
+	- udp (connectionless)
+	- tcp (connection-oriented)
+	- raw - raw ip
+	- unix domain
+  - transport layer
+    - packets
+      - a piece of a message wrapped up with a source and destination address
+    - transport layer breaks a message into packets
+    - recieving side collects the packets and combines them into messages
+* lab 2
+** DONE send 444 lab instructor an email about early labs
+   DEADLINE: <2016-09-22 Thu>
+curtis.bowden@unbc.ca
+* lecture 5
+- student presentation
+  - http and web
+  - http
+    - hypertext transfer protocol
+    - application protocol
+    - protocol
+      - a set of rules governing a conversation between client and server
+    - http is the foundation of data communication for the web
+    - implemented in two programs
+      - a client
+      - a server
+    - invented by Jim Berners Lee with W3C, IETF, ISO
+    - client and server exchange http messages
+    - web page consists of objects
+      - consists of a base html file
+      - each object is addressable by a url
+	- hostname/pathname
+    - client / server interaction
+      - client sends request
+	- http request
+      - server recieves and responds to the request
+	- http response
+      - http uses tcp
+	- socket interface
+      - http is stateless
+	- server doesn't store any information about the client
+	- each command is executed independantly with no knowledge of previous commands
+      - connections
+	- persistent
+	  - multiple requests and their responses can be sent over the same TCP connection
+	    - server leaves the connection open
+	- non-persistent
+	  - each request and their responses should be sent over a different tcp connection
+	    - connection is closed after each request
+	- round trip time
+	  - the time it takes for a small packet to travel from client to server and back to client
+	  - involves a three way handshake
+	  - non persistent http response time = 2rtt + file transmission time
+      - message format
+	- request message
+	  - request line
+	    - GET/somedir/somefile.html HTTP/1.1
+	  - header lines
+	- response message
+	  - status line
+	    - HTTP/1.1 200 OK\r\n
+	  - header lines
+	  - data
+  - cookies and webcache
+    - stateless
+      - pros
+	- simplifies design of server
+	- servers can handle thousands of connections at a time
+      - cons
+	- can't restrict access to content
+	- content of server cannot be modified based on identity
+    - cookies
+      - a text file with no executable code
+      - components
+	- header line in http response method
+      - created through http-header "Set-Cookie"
+    - web cache
+      - a network entity that satisfies http requests on behalf of an origin web server
+      - components
+	- its own hard disk space
+    
+* lecture 6 
+- electronic mail
+  - three main components
+    - user agents
+      - "mail reader"
+      - compses and reads emails
+      - outlook, etc.
+      - outgoing, incoming is stored on server
+    - mail servers
+      - mailbox
+	- incoming messages
+      - message queue
+	- outgoing
+    - simple mail transfer protocol: SMTP
+      - uses tcp to transfer from client to server on ports 25, 587, 465, or rarely 2525
+      - direct transfer
+      - connection based transfer
+	- handshake
+	- transfer of message
+	- closure
+      - command/response interaction (like http)
+      - messages must be in 7 bit asci
+  - mail server in depth
+    - user agents sends to a mail submission agent (MSA) using SMTP
+    - MSA sends to Mail Transfer Agent (MTA)
+      - often the same machine
+    - MTA uses DNS to lookip the mail exchanger (MX) for the receipants domain, MTA conneccts to MX as an SMTF client
+    - Mail Delivery Agent recieves from MX
+  - spoofing and spamming
+    - originally SMTP had no way of authenticating
+      - led to SMTP AUTH extention
+    - many emails today are rejected or quarantined by a range of techniques
+      - domainkeys
+      - greylisting
+      - and many more
+    - stop it by restricting outgoing mailserver access
+      - location restrictions
+	- no access if ip is not from isp
+    - authentication
+      - mobile friendly
+  - mail retrieval
+    - SMTP is purely push based so the server needs to know where to push to the client
+    - POP post office protocol
+      - mostly POP3
+    - IMAP internet mail access protocol
+    - http (gmail, ymail)
+- DNS
+  - a mapping of human friendly names to ip addresses
+  - implemented in a hierarchy of name servers
+  - services
+    - hostname to ip address translation
+    - host aliasing
+    - load distribution
+  - why not centralize?
+    - single point of failure
+    - trafic volume
+    - distant centralized database
+    - maintainance
+  - security issues
+    - DDoS attacks
+      - not successful to date
+    - redirect attacks
+    - dns poisoning
+    - send bogus records to DNS which caches
+* lecture 7
+** DONE midterm
+   DEADLINE: <2016-10-18 Tue>
+* lecture 8 [2016-10-06 Thu]
+- TCP
+  - connection oriented
+    - both ends must establish a connection via a three way handshake
+  - only runs in end systems not the network
+  - full duplex
+    - both sides can transmit at the same time
+  - point to point
+  - applications
+    - Good for
+      - DNS
+	- smaller messages use UDP
+      - eMail/Message transfer
+    - Bad for
+      - Media Streaming
+      - Real-Time applications
+  - Maximum segment size
+    - the biggest size a chunk of a message can be
+    - the bandwidth of the transmission method - header size
+  - TCP header
+  - sequence number
+    - position of the first byte in the segment
+  - acknowledgement #
+    - sequence number of the next expected segment
+    - provides cumulative acknowledgements
+    - we can chose how to handle out of order segments
+      - chuck them
+      - leave gaps
+  - transport layer
+    - tcp guarantee
+      - ip has few guarantees
+      - tcp guarantees both arrival and order
+	- data out of buffer = data into buffer
+    - why tcp
+      - timeouts
+      - fast re-transmit
+      - flow control
+    - timeouts
+      - timeouts are used to recover from lost segments
+	- value is based on the round trip time (RTT)
+      - every segment has a timeout
+	- only one timeout at a time
+    - SampleRTT
+      - amount of time between when a segment sent and its acknowledgement is recieved
+      - done one at a time
+    - EstimatedRTT
+      - average of all recorded SampleRTTs with more weighting on more recent samples
+    - DevRTT
+      - initially 1
+      - if a timeout occurs the value doubles
+      - at all other times
+	- TimoutInterval =  EstimatedRTT + 4 * DevRTT
+      - time dependency is bad
+	- Fast re-transmit
+	  - occurs when 3 duplicate acks are recieved
+	    - allows segments to be reset before timeout expires
+	  - duplicates occur when segments are recieved out of order
+	  - maintain SendBase and NextSeqNum variables
+- old outline
+  - HW %10
+  - Presentations %15
+  - participation %5
+  - exam 1 %20
+  - exam 2 %20 
+  - labs %30
+- new outline
+  - Presentations %15
+  - exam %20
+  - lab %30
+  - project %35
+    - visual simulation of protocol stack
+
+** DONE review for exam
+   SCHEDULED: <2016-10-13 Thu>
+* lecture 9 [2016-10-13 Thu]
+- topics for exam
+  - concepts
+    - protocol
+      - what is a protocol
+      - protocol stack
+    - protocols
+      - http
+      - ftp
+      - smtp
+      - pop
+      - imap
+    - networks
+      - internet
+      - intranet
+      - botnet
+    - subsystems
+      - network core
+      - network edge
+    - agents / role players
+      - host
+      - clients
+      - servers
+      - proxy server
+      - browser
+      - switch
+      - base station
+      - gateway
+      - firewall
+    - communication points
+      - source
+      - destination
+      - socket
+    - adddressing
+      - port
+      - ip address
+      - dns
+      - aliasing
+    - transmition type
+      - circuit switching
+      - packet switching
+      - connection oriented
+      - contectionless
+    - activities
+      - multiplexing / demultiplexing
+	- frequency division multiplexing
+	- time division multiplexing
+	- store and forward
+	- hand shaking
+	- routing
+	- flow control
+	- congestion control
+    - unit of transfer
+      - bits
+      - bytes
+      - message
+      - packet 
+      - frame
+      - datagram
+      - stream
+    - medium of transfer
+      - copper wire
+      - coaxial cable
+      - fiber optics
+      - radio
+    - applications
+      - hypertext
+      - web cache
+      - security
+      - web cache
+      - sniffing
+      - spoofing
+      - virus
+      - worm
+      - denial of service
+    - issues
+      - delay
+      - logs
+      - congestion
+      - buffer overflow
+      - corruption
+      - out of order
+  - 7 layers
+    - application
+    - presentation
+    - session
+    - transport
+    - network
+    - link
+    - physical
+    - 
+    - functionality / responsibility of each
+- 10 true or false
+- 5 fill in the blanks
+- 10 short questions
+
+** DONE study all the things
+   DEADLINE: <2016-10-17 Mon>
+mostly chapters 2-3
+- classify protocols by
+  - reliable data transfer
+  - throughput
+  - timing
+  - security
+
+* lecture 10 [2016-10-27 Thu]
+- congestion control
+  - congestion
+    - too many sources sending too fast for network to handle
+    - different from flow control
+  - explicit congestion notification
+    - receiver is told about congestion, sends back warning about congestion on ACK segment
+  - TCP congestion control (additive increase multiplicative decrease)
+    - sender increases transmision rate (probing for usable bandwidth) until loss occors then cut rate in half, repeat
+    - sender limits transmition
+    - 
+* project notes
+- get packets by node
+

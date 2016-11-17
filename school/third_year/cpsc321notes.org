@@ -1,0 +1,400 @@
+* lecture 1
+(((HW)OS)Software)
+- project
+  - team 1, flash based file system
+    - Barry
+    - Jeremy
+    - Davis
+  - team 2, wireless network protocol
+    - Michael
+    - Alex
+    - Won Woo
+    - Patrick
+  - team 3, cpu scheduling
+    - Davyn
+    - Isabelle
+    - Dong Chen
+- debate
+  - team 1: Microkernel
+    - Jeremy
+    - Davis
+  - vs team 2: Monolithic Kernel
+    - Alex
+    - Won Woo
+  - team 3: Windows
+    - Micheal
+    - Davyn
+    - Isabelle
+  - vs team 4: Linux
+    - Patrick
+    - Barry
+    - Dong Chen
+- assignments
+  1. basic io
+  2. hw abstraction layer
+  3. system calls
+- HW: structure of a computer
+  - cpu
+    - registers
+      - read and write from/to memory
+  - memory
+    - MMU memory managment unit
+  - I/O
+  - Bus
+
+while (on) {
+fetch instruction pointed at by PC;
+PC++;
+decode;
+execute;
+}
+
+- cache in multicore is difficult
+  - each core has an l1
+  - shared l2
+  - modifications could take place in any one of the three levels
+  - can't cache shared variables
+- shared variables
+  - consistency / atomicity
+  - store in volatile memory
+    - happens in compiler optimisation
+- hardware level thread saftey
+  - fetch and add
+  - test and set
+  - CAS
+
+microprocessor unit (mpu) vs microcontroller unit (mcu)
+| properties             | microprocessor                         | microcontroller                           |
+|------------------------+----------------------------------------+-------------------------------------------|
+| completeness           | brain of computer                      | full computer                             |
+| program execution from | DRAM (dynamic extendability) unlimited | ROM & SRAM (ROM is faster) small/limited  |
+| power                  | high                                   | low                                       |
+| memory                 | unlimited (GB)                         | limited (MB)                              |
+| ui/display             | sophisticated                          | none to little display controller support |
+| peripheral support     | wide range                             | fixed                                     |
+| power supply           | multiple levels of voltage             | single voltage                            |
+| power consumption      | high                                   | low                                       |
+| sophisication          | yes                                    | no                                        |
+| simplicity             | no                                     | yes                                       |
+| cost                   | high                                   | low                                       |
+** DONE exam
+   DEADLINE: <2016-10-11 Tue>
+  - 15%
+start at 9:00
+* tutorial 1
+- how does a computer start
+  - reset interupt immediatly upon startup
+    - sets PC to reset vector
+- asf Atmel Studio Framework
+  - sets up the PC and other stuff
+  - technically a firmware
+- What's an opperating system?
+  - bridge between hardware and applications
+  - %80 drivers
+- driver people make lots of money
+- c code standards
+  - captialize definitions
+  - use h files
+    - ifndef filename def filename_H_ endif
+  - use uint_32 not just int, be specific
+- struct
+  - a datastructure made up of datastructures
+- new project
+  - new asf board project in C
+  - sam4s Xplained pro
+  - asf wizard loads modules
+    - ASF -> wizard
+    - add 'Delay routines (service)' module
+  - start of program sysclk_init(); board_init();
+- "we don't write menial crap anymore" just find code on the internet
+** DONE blinking led/thermometer
+   DEADLINE: <2016-09-21 Wed>
+- blinking lights
+- temperature sensor (optional)
+
+* lecture 2
+- what is an OS
+  - software
+  - makes the HW more usable
+    - makes HW convenient to use
+  - acts as messenger between HW and SW
+  - manages HW and SW
+  - user friendly interface
+  - allocation of HW and SW components to applications
+  - handles scheduling of different applications
+- What does an OS do
+  - secure
+  - reliable
+  - stable
+  - allows users to access resources through a set of policies
+- OS easy to interact with
+  - GUI
+  - shell
+- resources
+  - HW
+    - Memory
+    - cpu
+    - io
+      - storage
+  - program / data
+- processes
+  - a program in a state of execution (programs have no state, processes do)
+  - users
+  - consume resources
+  - assume lots of roles
+    - do work
+    - waiting for something
+- how does a process start
+  - get a unique id
+  - allocate resources
+    - memory
+- OS is a process that manages other processes
+  - creates
+  - destroys
+  - supervises
+- computers used to be used by
+  - computer experts
+  - then operators
+    - may not know how it works, but they could opperate it
+* tutorial 2
+- why bother with asf? can't we write hardware commands as we go?
+  - two words: temperature sensor
+  - rather than trying to connecct directly with hardware software communicates with the system
+  - nobody should ever have to know everything about a sensor
+  - there are a hundred different companies that make a hundred different controllers
+    - some are basically shaped like an x-box controller but the hardware is all different
+    - we want an abstract api
+- HAL is an abstraction layer that is implemented and stuffed between the hardware and other software
+  - hides hardware differences from the kernel so we don't have to continuously mangle kernal code for different hardware
+  - allows for languages to interface with the os which ggives limited hardware access
+  - technically linux and mac don't have a ready-built hal
+    - most distros have modules that serve the same purpose
+  - hal is a nice abstraction
+  - makes upper layers more platform independent
+  - nobody want's to code on bare metal
+  - names are generally close to standard C convention
+    - functions of a module M begin their name with M_
+    - function names/variables are lower case and seperated with underscores
+    - constants declared with the const keyword
+    - enums and constants are capitalized
+    - defined datatypes begin with lowercase letter t
+    - this_is_a_function(), ThisIsAConstantVar, tThisIsAType
+    - 
+* tutorial 3
+- whats after the drivers and hal
+- when writing applicatons that sit on the HAL we require both app and system to be compiled together and deployed as a single binary
+- software running on a MCU is called firmware
+- we want a separately compiled system that can axecute arbitrary applications like a PC
+- keeping in mind that this is uncommon, we are dealing with a toy system
+- difference between an MPU and an MCU
+  - MPU
+    - a cpu on a single integrated circuit
+    - basically worthless on its own
+  - MCU
+    - a tiny computer
+- on runtime (powerup) our loader loads our data, bss and passes off to main
+- firmware is tough
+- asside from updates firmware should not be replaced
+- applications in the context of this class is firmware that describes control logic
+- we can modify our toy system to allow applications to load from permanent storage then be executed
+- this allows our MCU to act much more like a standard general purpose system
+- we would like to have our OS as firmware and use our applications as a kind of software
+- lets pretend we have minios
+- we need an app, it must be standalone
+- it's simple written in assemby and uses the pio.s drivers written in MiniOs to turn LED0 on
+- we want to run this from RAM, how?
+- the linker
+- link script for our sample project is in two files
+- sam4ss_flash.ld and sam4sd32c_flash.ld
+- never remove a linker script
+- we change the linker script
+- main isn't in main memory
+- main entry point for any bare metal appication is the reset vector
+- the keyword KEEP forces the linker to keep code/data even when it's unreachable
+  - we need to use this to mark an executables entry point
+    
+** DONE assignment 2
+   DEADLINE: <2016-10-04 Tue>
+* lecture 4
+- scheduling
+  - execution time (cpu)
+  - space
+    - MM
+    - Disk
+
+- scheduler
+  1. chooses a process in the ready queue
+  2. chooses a time slot (Quanta)
+  3. sets the clock for that period (Quanta)
+  4. give the cpu control to the process
+  5. GOTO 1
+
+- clock
+  - after the Quanta expired it sends a clock interrupt
+
+- interrupt
+  - a signal to get attention from the cpu
+  - stop whatever it's doing
+  - attend the interrupter
+  - depending on the severity of the interrupt take necessary action
+
+- sources of interrupt
+  - clock
+    - physical
+      - for cpu scheduling
+      - watchdog timer for emergency
+    - logical
+      - timing aspect in applications
+  - I/O devices
+- Interrupt handling
+  - save the context of current process in control of cpu in MM
+  - identify the source of interrupt
+  - call the appropriate service routine
+    - interrupt service routine (ISR)
+      - in case of clock cpu scheduler
+  - who does this?
+    - part is done by
+      - HW
+	- saves partial content of the context
+	- gives control to the Interrupt handler routine
+- choosing a process among several processes
+  - FCFS
+    - first come first serve
+    - based on time of arrival
+    - fixed unit time for each process
+    - circular queue
+    - called Round Robin scheduling
+- storage
+  - Main Memory
+    - to hold the program during execution
+    - temporary
+    - numerically addressed
+      | 0    |
+      | .    |--------
+      | .    |
+      | .    |logical division called a page
+      | .    |--------
+      | .    |
+      | FFFF |
+    - unit of addressing: memory word
+      - 16/32/64 bit
+  - Disk
+    - storing data/programs
+    - permanent
+    - numerically addressed
+    - unit of addressing: sector
+      - size = 512/1k/2k bytes
+  - how do we map between these?
+    - system to manage programs in memory = memory management system
+    - set of programs to manage disk = file system
+  - Memory management system
+    - goal: managing programs in MM during execution
+    - constraints
+      - we don't have enough memory for all
+	- must be
+	  - divided
+	    - size = pages
+	  - shared
+	  - protected
+    - hide complexity from the programmers
+      - give them 'unlimited' memory starting from 0 -> ∞
+    - implementing virtual memory
+      - address mapping (these notes aren't great for this part, https://en.wikipedia.org/wiki/Virtual_address_space)
+	- divide memory into fixed sizes
+	  - pages 
+	  - main memory has page frames and each program has an offset
+	  - the virtual memory is split into pages and is stored at page# + offset in MM
+	  - every process has its own page table
+	  - must be done efficiently
+	    - HW
+  - file system
+    - how to manage files on a disk
+    - disk
+      - collection of sectors
+	- cylinders
+	- tracks
+	- sectors
+      - address = <cylinder#, track#, sector#>
+    - file
+      - name
+      - blocks
+      - where are files stored
+      - protection information
+      - access information
+    - maintain a list of files
+      - directories
+	- entry for each file
+	  - name
+	  - attributes
+    - maintain the content (blocks) of the files
+      - file allocation table
+	- FAT
+      - index (i-node)
+	- Linux family
+
+Fat:
+[directory entry] ---
+          |   |     | next block
+       ---|   |<-----
+       |  |   |
+       |  |   |
+       -->|   |
+          |   |k-entries
+          |   |
+
+inode
+|   |
+|   |------> partition
+|   |------> partition
+|   |------> partition
+|   |...
+|   |------------------------
+                            |
+                            > |   |------> partition
+                              |   |------> partition
+                              |   |------> partition
+                              |   |------> partition
+                              |   |------> partition
+                              |   |----------------------> ...
+
+k-sectors
+
+* tutorial 4
+** DONE assignment 3
+   DEADLINE: <2016-10-16 Sun>
+* tutorial 6 [2016-10-11 Tue]
+- system calls
+- we have drivers, hal and application execution. what else is there
+  - system and applications co-exist
+  - security issue
+- stage fright (now metaphor) malware gains access to target android phone by having the user 
+  visit a web page containing a file that infects the phone
+- letting an application gain access to the kernel is never good
+- CPU's typically have a memory protection unit and support for two or more cpu modes
+- together these allow our system to enforce any access prohibitions on specific memory regions that we require
+- normally in an ordinary OS the kernel's address space is  protected by the MPU
+- Cortex-M4 supports only two CPU modes - kernal mode and user mode.
+- kernel mode is privileged by default
+- user mode can be privileged or unprivileged
+- kernel mode is handler mode
+- one we have privileges we separate the stacks
+- kernel mode only uses the main stack but user can use process stack and sometimes the main stack
+- cpu is only every in one mode with one active stack
+- we want MiniOS to run in kernel mode and use the main stack
+- control register specifies the level of privilege and the active stack while in user mode
+- system calls call the HAL
+  - an interface between applications and the os
+** DONE resubmit on blackboard 
+   DEADLINE: <2016-10-11 Tue>
+* tutorial 7
+- file system
+  - HW interface
+    - alex recommends writing a data generator to test
+  - flash device driver
+  - logic of file system 
+  - SW
+* TODO brainfuck compiler
+- write a brainfuck compiler that will compile for MiniOs
+  - maybe add a syscall operator that calls the syscall with the number of the current cell
+  - maybe write the compiler to run on MiniOs
+  - maybe write a super basic text editor for MiniOs

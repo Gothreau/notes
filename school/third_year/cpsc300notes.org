@@ -1,0 +1,224 @@
+* lecture 3
+- big picture
+  - software engineering can be traced back to 1968 in a paper by Dijkstra: A case against goto statement
+    - Knuth - 1972 opposed
+  - N. Wirth
+    - Pascal
+  - Fortran
+    - scientific
+  - Cobol
+    - business
+  - Pascal did both
+  - structured programming
+    - control structures
+      - if/else
+      - loops
+      - switch
+  - modular programming
+    - organize program as a collecction of modules
+      - functions / subroutines / procedures / methods
+  - 1971 - N. Wirth: program development by stepwise development
+  - 1972  - on the criteria to the need to decompsing systems into modules
+    - SW is group work
+      - everybody doesn't need to know the details about everything
+	- Information hiding
+	- encapsulation
+	- interface
+	- object oriented programming
+	  - reusability
+  - Grady Booch
+    - worked for Rational Software
+    - Booch Methodology
+      - object oriented methodology
+  - Jim Rumbaugh
+    - worked for DEC
+    - object modelling techniques OMT
+  - Rubbaugh and Booch joined togehter to create a uniform methodology
+    - they brought in Iver Jacobson
+      - the 'three amigos'
+    - UML
+    - they failed to create a uniform methodology
+  - Jacobson left and created use case diagrams
+    - sequence diagram
+    - activity diagram
+    - object diagram
+  - software sucvess rate
+    - 1994 study
+      - 16.2% of projects were successful
+    - 2007
+      - 35% success rate
+    - this would be unnaceptable in other engineering projects
+  - History of SW development
+    - 60's-70's
+      - custome made every time
+    - 80's-90's
+      - 70% custom, 30% commercial component reuse
+    - 2000-2010
+      - 20% of the shelf
+    - 2010+ 80%-90% reuse
+
+* lecture 4
+- unified view of the software system
+  - one person
+  - small group of agreable minds
+    - compromise
+    - sound reasoning
+  - clarity
+  - ease of use
+- adding manpower to a late project makes it later
+- there is no magic bullet
+- requirements
+  - what is it required to do
+- architecture
+  - what are the main components and how do they come together to fulfil the requirement
+- interface
+  - boundary between two systems
+- framework
+  - provides structure to organize code
+- prototype
+  - system that reflects design decisions
+- metrics, progress
+  - productivity
+    - features, # of features
+  - documents
+    - requirements
+    - architecture
+    - plan
+    - cost
+  - program, the product
+    - lines of code? (error free, tested)
+      - effort = k * (LOC)^1.5
+  - man month
+    - man hours in a month
+- "bad software architecture is a people problem"
+- team issues
+  - like minded
+    - technical, no knowledge gap
+      - choice of tools may not be understood
+    - personal, 
+- estimating is hard because
+  - not sure until you see it
+  - uncertianty is inherent
+  - rarely obeys physical laws
+  - people and technical problems
+  - # of people and time/productivity is not proportional
+* lecture 5
+- software development process
+  - what is the system required to do, requirement document
+    - requirements analysis & design
+      - from users
+      - from the systems required to deploy the systems
+    - how should it look (architecture)
+      - what are main components & how should they come together
+      - should it be able to realize all possible use cases
+      - should be able to realize all possible use cases
+      - must address the requirements and all stakeholders
+      - how do we go from reuirement to architecture, system analysis and design
+    - how do we actually build it
+      - test it
+      - itegrate and test it
+      - release and maintain
+- real engineering
+  - an engineer thinks their way through a project before starting it and they try to optimise the solution
+    before startingg actual work
+  - an engineer has to be realistic when planning timeline, material aquisitions, labour resources, design requirements,
+    design solutions and aquiring permits and certificates
+  - ethical, carries responsibility to ensure that the final product in whatever form it takes is safe
+  - work as part of a team
+  - engineering = knowledge + ethics + experience
+- waterfall model
+  - requirement
+    - system design
+      - implementation
+	- testing
+	  - operational maintenance
+- spiral model, don't simply follow, steer
+  - iterative refinement
+  - iterative increment
+  - result focused
+  - accommodate change at any time
+- agile
+  - rapid prototyping and incremental building
+  - progressive refinement
+    
+* lecture 6
+** DONE website 
+   DEADLINE: <2016-09-26 Mon>
+* lecture 7
+- graphicall representaions (entity relationship diagrams) must
+  - simplify representation
+  - capture the essence
+- description about a system
+  - who will use it
+  - how do they interact
+  - what do they want from the system
+- Iver Jacobson introduced a diagram to describe systems
+- use case diagram
+  - uses
+    - ovals (use case)
+      - describe an interaction
+    - lines
+    - arrows
+    - stick figure (actors)
+      - describe user
+  - actor interaction with a use case is represented by a line connecting them
+  - how to create a use case diagram
+    1. identify the actors
+    2. identify their use cases
+    3. refine uses cases
+  - if you put every use case the list may be too long
+    - some use cases may be an expanded version of an existing use case <<extend>>
+    - there may be use cases common to many, instead of repeating put it as a seperate use case and use it <<uses>>
+* lecture 8
+- popular diagrams in SW dev
+  - from external perspective
+    - views/snapshots/usage
+      - use case diagram
+  - from internal
+    - structure
+      - Entity relationship relationship diagram
+      - class diagram
+      - package diagram
+      - deployment diagram
+    - behavior
+      - state diagram
+      - interaction diagrams
+      - activity diagrams
+- ER diagram
+  - to discrivbe passive entities (Data)
+  - components
+    - entity, rectangular box
+      - name
+      - attributes
+    - relationships among entities
+      - line with diamond to denote relationship
+- class diagram
+  - data + methods/operations
+  - classes
+  - relationships (inheritence, subclass, superclass, ...)
+    - association
+    - aggregation
+      - composition
+    - generalization
+    - specialization
+    - --------------
+    - types of relationship
+      - between two parties
+	- the number cardinality is how many, 1 to 1, 1 to many
+- package diagram
+  - design perspective
+    - put related classes into a package and analyze package dependencies
+      - cohesiveness
+      - coupling
+- deployment diagram
+  - components
+  - communication among them
+    - shared memory
+    - messages
+
+** DONE assignment 3
+   DEADLINE: <2016-10-03 Mon>
+** DONE use case diagram
+   DEADLINE: <2016-10-03 Mon>
+** debate proposal
+   
