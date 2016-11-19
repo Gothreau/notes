@@ -503,3 +503,34 @@ data Queue a = Q[a][a][a] -- Q head, worker, tail
   - example
     - flip f x y = f y x
     - λfxy.[f(y)](x)
+* lecture 21 [2016-11-19 Sat]
+- α-conversion
+  - if you change the name of a bound variable it should not change the meaning
+    - λx.x should be the same as λy.y
+- β-reduction is how the λ-calculus "works"
+  - (λx.T)(A) ~~~~~> T[x/A]
+    - replace each x in T with A
+      - [λx.sin(x)](3) ~~~~~~~> sin(3)
+      - [λx.(sin(x) + (λx.x)(5))](3)
+- de Bruijn indices
+  - look it up, seems important
+- how do we represent λ-calculus in Prolog?
+  - unbd(sin) unbound
+  - app(unbd(sin),unbd(3)) apply
+  - dB(3) de Bruijn indices
+  - abstractions
+    - abs(x, term) where x = string, term = λ-term
+    - abs0(x, term) where x is a suggested variable name, term uses dB(N) for x
+- natural numbers in λ-calc
+  - two is λfx.f(f(x))
+  - abs("f", abs0("x", app(dB(1), app(dB(1), dB(0)))))
+- absToAbs0(Term1, Term2) :- absToAbs0(Term1, Term2, []).
+  absToAbs0(app(F,X), app(F1, X1), List) :- 
+    absToAbs0(F, F1, List),
+    absToAbs0(x, X1, List).
+  absToAbs0(unbd(X), unbd(X), _).
+  absToAbs0(Q, dB(N), List) :-
+    isVar(Q),
+    nth0(N, List, Q).
+  absToAbs0(abs(X, Term), abs0(X, Term1), List) :-
+    absToAbs0(Term, Term1, [X|List]).
