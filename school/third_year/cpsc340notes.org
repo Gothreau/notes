@@ -595,3 +595,24 @@ pushdown atomata (missed this one)
 - 8.2.1 a
 - 8.2.5 a
 - 8.2.2 a 
+* lecture 29 [2016-11-21 Mon]
+- example of undecidable language
+  - halting problem
+- halting problem
+  - there is no program H(m, w) = {1, if m(w) halts | 0, otherwise}
+    assume it exists
+    P(x):
+      A: if H(x,x) == 1 goto A
+    
+    if P(P) halts => H(P, P) == 1 => P(P) will not halt
+    if P(P) does not halt => H(P,P) == 0 => P(P) halts
+- Theorem: if L is recursive then L(with a line on top) is also recursive
+- Theorem: if L and L(with line) are RE, then L is recursive
+
+** TODO quiz 
+   DEADLINE: <2016-11-23 Wed>
+probably on halting problem
+                   
+                   
+** TODO homework
+- exercise 9.2.6 a
