@@ -580,6 +580,18 @@ pushdown atomata (missed this one)
 	- delta(q1, y) = (q1, y, R)
 	- delta(q1, 1) = (q2, y, L)
       - and so on, turing machine programming is hard, we will not be expected to do it
-* lecture 28 [2016-11-17 Thu]
-- presentation on routing
-  - read the textbook
+* lecture 28 [2016-11-18 Fri]
+- a function f(w) with domain D is computable (or Turing computable) iff there exists a turing machine M st.
+  - q0w |*- M(qf)f(w), qf ∈ F
+- Nondeterministic Turing Machine
+  - church-turing hypothesis modern or future computer == truing machin, they compute the same problems.
+    Universal Turing machine: the machine partially computes M(X) (the Turing machine M with input X). it should exist
+    the language accepted by a turing machine is called a recursivly enumarable langguage
+  - the language L is recursive if L = L(M) for some turing machine M st.
+    - if w is in L then M accepts (and therefore halts)
+    - if w is not in L then M eventually halts, although it never enters an accepting state
+    - Note this is called an algorithm, a problem is decidable if it is a recursive language, otherwise, undecidable
+** TODO homework 
+- 8.2.1 a
+- 8.2.5 a
+- 8.2.2 a 
