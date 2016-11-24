@@ -1,34 +1,33 @@
 * list of shows in progress or not yet begun
-| show                           | episodes | episode length (minutes) |                  total run time |
-|--------------------------------+----------+--------------------------+---------------------------------|
-| Red Dwarf                      |       73 |                       30 |                            2190 |
-| Breaking Bad                   |       62 |                       49 |                            3038 |
-| Stargate SG1                   |      213 |                       44 |                            9372 |
-| Stargate Atlantis              |       99 |                       44 |                            4356 |
-| Stargate Universe              |       40 |                       43 |                            1720 |
-| Black Mirror                   |       19 |                       60 |                            1140 |
-| Angel                          |      111 |                       44 |                            4884 |
-| Buffy                          |      145 |                       44 |                            6380 |
-| Jessica Jones                  |       26 |                       60 |                            1560 |
-| Supernatural                   |      265 |                       44 |                           11660 |
-| Dr. Who                        |      160 |                       45 |                            7200 |
-| Suits                          |       94 |                       44 |                            4136 |
-| X-Files                        |      207 |                       45 |                            9315 |
-| Babylon 5                      |      110 |                       45 |                            4950 |
-| Game of thrones                |       73 |                       56 |                            4088 |
-| Battlestar Galactica           |       73 |                       44 |                            3212 |
-| Sanctuary                      |       59 |                       44 |                            2596 |
-| Farscape                       |       88 |                       50 |                            4400 |
-| Westworld                      |       10 |                       60 |                             600 |
-| Star Trek: The Next Generation |      176 |                       44 |                            7744 |
-| Star Trek: Deep Space Nine     |      173 |                       45 |                            7785 |
-| Black Books                    |       18 |                       25 |                             450 |
-| Star Trek: Voyager             |      170 |                       44 |                            7480 |
-| V                              |       23 |                       42 |                             966 |
-| Silicon Valley                 |       32 |                       28 |                             896 |
-| The I.T Crowd                  |       25 |                       25 |                             625 |
-| Heroes                         |       79 |                       45 |                            3555 |
-| Better Call Saul               |       30 |                       46 |                            1380 |
-|--------------------------------+----------+--------------------------+---------------------------------|
-| Total                          |     2653 |                    44.25 | 1961.3 hours or(81.720833) days |
+| show                           | episodes | episode length (minutes) |                     total run time |
+|--------------------------------+----------+--------------------------+------------------------------------|
+| Red Dwarf                      |       73 |                       30 |                               2190 |
+| Stargate SG1                   |      213 |                       44 |                               9372 |
+| Stargate Atlantis              |       99 |                       44 |                               4356 |
+| Stargate Universe              |       40 |                       43 |                               1720 |
+| Black Mirror                   |       19 |                       60 |                               1140 |
+| Angel                          |      111 |                       44 |                               4884 |
+| Buffy                          |      145 |                       44 |                               6380 |
+| Jessica Jones                  |       26 |                       60 |                               1560 |
+| Supernatural                   |      265 |                       44 |                              11660 |
+| Dr. Who                        |      160 |                       45 |                               7200 |
+| Suits                          |       94 |                       44 |                               4136 |
+| X-Files                        |      207 |                       45 |                               9315 |
+| Babylon 5                      |      110 |                       45 |                               4950 |
+| Game of thrones                |       73 |                       56 |                               4088 |
+| Battlestar Galactica           |       73 |                       44 |                               3212 |
+| Sanctuary                      |       59 |                       44 |                               2596 |
+| Farscape                       |       88 |                       50 |                               4400 |
+| Westworld                      |       10 |                       60 |                                600 |
+| Star Trek: The Next Generation |      176 |                       44 |                               7744 |
+| Star Trek: Deep Space Nine     |      173 |                       45 |                               7785 |
+| Black Books                    |       18 |                       25 |                                450 |
+| Star Trek: Voyager             |      170 |                       44 |                               7480 |
+| V                              |       23 |                       42 |                                966 |
+| Silicon Valley                 |       32 |                       28 |                                896 |
+| The I.T Crowd                  |       25 |                       25 |                                625 |
+| Heroes                         |       79 |                       45 |                               3555 |
+| Better Call Saul               |       30 |                       46 |                               1380 |
+|--------------------------------+----------+--------------------------+------------------------------------|
+| Total                          |     2591 |                44.074074 | 1910.6667 hours or(79.611111) days |
 #+TBLFM: $4=$2*$3::@>$2=vsum(@2$2..@-1$2)::@>$3=vmean(@2$3..@-1$3)::@>$4=(vsum(@2$4..@-1$4)/60) hours or (vsum(@2$4..@-1$4)/(60*24)) days

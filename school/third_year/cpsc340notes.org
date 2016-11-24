@@ -616,3 +616,20 @@ probably on halting problem
                    
 ** TODO homework
 - exercise 9.2.6 a
+* lecture 30 [2016-11-23 Wed]
+- important terms
+  - recursive
+  - decidable
+  - undecidable
+- theorem: if L and L̄ are RE, then L is recursive
+  - proof
+    L is R.E. => ∃ P1 st P1(w) == {1 if w ∈ L | P1(w)↑ if w ∉ L}
+    L̄ is R.E. => ∃ P2 st P2(w) == {1 if w ∈ L̄ | P2(w)↑ if w ∉ L̄}
+    
+    now n = 0
+    repeat:
+      n <- n+1
+      run  P1(w) with n steps:
+        if it halts return 1
+      run P2(w) with n steps:
+        if it halts return 0
