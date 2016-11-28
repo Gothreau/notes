@@ -591,3 +591,17 @@ allImprov^(1000) undefinied = {correct up to length 999}
 μ gg x = gg (μ gg)x
 
 
+* lecture 23 [2016-11-25 Fri]
+- DCCs are syntactic sugar
+  goal(fred(A,B,C))
+            -->
+             matchA(A), matchB(B), MatchC(C)
+  
+  goal(fred(A,B,C), In, Out) :-
+    matchA(A, In, Out1),
+    matchB(B, Out1, Out2),
+    matchC(C, out2, Out).
+
+  goal(x, "aabbbc!" out)
+  x = fred("aa","bbb","c")
+  out = "!"

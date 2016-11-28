@@ -609,13 +609,14 @@ pushdown atomata (missed this one)
 - Theorem: if L is recursive then L(with a line on top) is also recursive
 - Theorem: if L and L(with line) are RE, then L is recursive
 
-** TODO quiz 
+** DONE quiz 
    DEADLINE: <2016-11-23 Wed>
 probably on halting problem
                    
                    
 ** TODO homework
 - exercise 9.2.6 a
+- 9.2.6 b
 * lecture 30 [2016-11-23 Wed]
 - important terms
   - recursive
@@ -633,3 +634,36 @@ probably on halting problem
         if it halts return 1
       run P2(w) with n steps:
         if it halts return 0
+* lecture 31 [2016-11-25 Fri]
+- why L is called recursively enumerable when L is accepted by a TM
+L ⊆ Σ⃰
+if w in L say yes
+otherwise M(w)↑
+- pidgeon tail aproach
+for a recursively enumerable language if you were to start at the first possible word and wait for it 
+to finish you may never get to any of the others but if you do the first 1 for 1 time slice then do the first
+two for 2 time slices each then the first 3 for 3 time slices each and so on to n for n seconds
+- tiers of languages (Chomsky's hierarchy)
+| Regular Languages      | *FA                                       |
+| Context Free Languages | PDA                                       |
+| Recursive              | Turing Machine (any programming language) |
+| Recursively Enumerable | Turing Machine (any programming language) |
+- coding
+<x,y> = 2^{x}(2y + 1) - 1
+- Godel numbering:
+[a_1,a_2,...,a_{n}] = 3^{a1}3^{a2}...p_i^{ai}...p_n^{an}
+- Diagonalization Language
+L_{d} = {w_{i}_{}|w_{i} ∉ L(M_{i})}
+where M_{i} is the ith turing machine
+not RE
+
+
+* lecture 32 [2016-11-28 Mon]
+- np and p
+  - not in exam
+  - p vs np
+    - p = polynomial
+      - the decision problems that can be solved in polynomial time, or can be accepted by a turing machine in polynomial time
+    - np
+      - if given a hint it can be solved in polynomial time
+      - if given an answer it can be verified in p time

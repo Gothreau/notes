@@ -1,0 +1,29 @@
+- not governed by a regulatory body
+  - P.Eng
+    - issued through a provincial governing body
+    - professional engineer
+    - before you can practice as a professional engineer or even use the word engineer in you title you need your P.ENG
+    - requires 
+      - Graduate with a degree from an accredited program in engineering or applied science, accredited by the Canadian 
+        Engineering Accreditation Board (CEAB).[citation needed]
+      - Complete an engineer-in-training (EIT) or engineering internship program under the direction of a professional engineer. 
+        With the exception of Quebec, this is a minimum four-year program.[18]
+      - Review of work experience by the association.
+      - Pass a professional practice exam,[19] the content and format of which differs by province.
+    - the body that gives out the P.ENG is able to hand out fines, take away somebodies licence to practice or hand out jail time
+      if there was loss of life
+  - engineers are overseen by a number of bodies (APEGBC Association of Professional Engineers and Geoscientists of British Columbia) that 
+    ensure they stick to a certain quality of work and
+    follow ethical guidelines
+    - they provide a framework to help engineers and provide constant education about new developments and standards
+    - these organizations also keep engineers to a code
+  - when an engineer graduates they go through a ceremony where they are given a ring and
+    they swear to uphold ethical standards (The Ritual of the Calling of an Engineer)
+
+- problems with their arguments
+  - software engineer is not used to describe people with engineering backgroud, case in point, that was my title over the summer
+  - software engineers don't follow the same process as engineers
+    - things change constantly
+  - we don't build on previous work, we aren't putting components together, best case we can remove some menial part of a project from a framework
+
+    
