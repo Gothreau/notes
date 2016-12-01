@@ -221,4 +221,6 @@
 ** DONE use case diagram
    DEADLINE: <2016-10-03 Mon>
 ** debate proposal
-   
+* project
+** TODO report presentation 
+   DEADLINE: <2016-12-05 Mon>   

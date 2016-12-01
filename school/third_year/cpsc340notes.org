@@ -657,7 +657,6 @@ L_{d} = {w_{i}_{}|w_{i} ∉ L(M_{i})}
 where M_{i} is the ith turing machine
 not RE
 
-
 * lecture 32 [2016-11-28 Mon]
 - np and p
   - not in exam
@@ -667,3 +666,53 @@ not RE
     - np
       - if given a hint it can be solved in polynomial time
       - if given an answer it can be verified in p time
+* TODO exam prep
+  DEADLINE: <2016-12-02 Fri>
+- exercises
+  - the turing machine ({q0,q1,q2},{0,1},{0,1,B},δ,B,{q2}) has the following transitions and no others
+    - δ(q0, 0) = (q1,1,R)
+    - δ(q1, 1) = (q2,0,L)
+    - δ(q2, 1) = (q0,1,R)
+    - starting with id q_{0}0110 show the entire sequence of id's entered by this TM until it halts
+  - is the language {a^{n}b^{n}c^{n-1}|n >= 1} context free? prove it.
+  - is the language {a^{n}b^{n}c^{n-1}|n >= 1} regular? prove it
+  - design a PDA to accept the language {ww^{R}|w \in {a,b}^{*}}
+  - is the language L = {abw|w \in {a,b}^*} regular? if it is find a DFA to accept it, otherwise prove it's not
+  - design a context-free grammar G = ({S,A,B},{a,b},P,S) where P is the set of productions
+    - S \rightarrow AB|C
+    - A \rightarrow aAb|ab
+    - B \rightarrow cBd|cd
+    - C \rightarrow aCd|aDd
+    - D \rightarrow bDc|bc
+    - the grammar is ambiguous. show in particular that the string aabbbccdd has two
+      1. parse trees
+      2. leftmost derivations
+      3. rightmost derivations
+  - convert to a DFA the following \epsilon-NFA
+    - 
+  - consider the grammar G = ({S,A,B}, {a,b}, P, S), where P is the set of productions:
+    - S \rightarrow abA
+    - A \rightarrow baB
+    - B \rightarrow aA|bb
+    - let L=L(G). is L a regular language? if L is a regular language, construct a DFA accepting L. if it is not why?
+  - give a DFA accepting the language L = {w|w \in {a,b}^*, w ends in ab}
+  - suppose L_1 = {a^{}^{2n}|n \geq 1} L_2 = {b^{n}|n \ge 1}, prove or disprove L_{1}L_{2} = {a^{2n}^{}b^n}
+  - given the transition diagram for a DFA give the regular expression for its language
+  - here is a transition table for a DFA:
+    |     | 0 | 1 |
+    | \rightarrow A | B | E |
+    | B   | C | F |
+    | *C  | D | H |
+    | D   | E | H |
+    | E   | F | I |
+    | *F  | G | B |
+    | G   | H | B |
+    | H   | I | C |
+    | *I  | A | E | 
+    1. do something with it (he crossed the stuff he had out)
+  - L_1 and L_2 are RE. is L_1 ∩ L_2 RE? why?
+    - yes give a program that does:
+      if P_1(x) and P_2(x) output yes
+      otherwise never halt
+   
+

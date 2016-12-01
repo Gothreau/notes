@@ -590,7 +590,6 @@ allImprov^(1000) undefinied = {correct up to length 999}
 
 μ gg x = gg (μ gg)x
 
-
 * lecture 23 [2016-11-25 Fri]
 - DCCs are syntactic sugar
   goal(fred(A,B,C))
@@ -605,3 +604,45 @@ allImprov^(1000) undefinied = {correct up to length 999}
   goal(x, "aabbbc!" out)
   x = fred("aa","bbb","c")
   out = "!"
+* lecture 25 & 26 [2016-11-28 Mon]
+- program
+  pred
+  pred
+- bindings
+  goal
+    |
+    v
+  goal 2
+- backtrack stack
+| state of the machine at some point |
+| state of the machine at some point |
+- if you run out of goals you succeed
+- not matching a goal causes backtracking
+- attempting to backtrack when backtrack stack is empty results in failure
+- when a goal matches the head of a rule
+  1. add unification bindings
+  2. replace the goal with the RHS of the rule
+     - depth first search
+  3. possibly add an entry to backtrack stack
+- the cut (!) 0 arg predicate
+  - always succeeds
+  - removes choice points introduced since matching the head of the current rule
+  - is useful if we know some choices will fail
+  - also useful for forcing flow
+  myNot(Goal) :- once(Goal), !, fail.
+  myNot(Goal).
+- unification
+  - if we have two terms with variables, a unifier is a list of variable assignments that make the terms identical
+    cat(house, bat(X), U)
+    cat(V, Y,dog(V))
+    is there a list of assignments for U,V,X,Y that will make those terms identical
+    V = house
+    U = dog(house)
+    Y = bat(X)
+  - variable
+    - if the variable is already bound, replace it with the binding
+    - if the variable isn't bound, bind it to the other term
+      - ex. if you've got an unbound u and you are matching it to "cat" then add u="cat" to the unifier 
+  - 
+    
+ 

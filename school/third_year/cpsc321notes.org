@@ -398,3 +398,6 @@ k-sectors
   - maybe add a syscall operator that calls the syscall with the number of the current cell
   - maybe write the compiler to run on MiniOs
   - maybe write a super basic text editor for MiniOs
+* project
+** TODO report presentation 
+   DEADLINE: <2016-12-05 Mon>   
