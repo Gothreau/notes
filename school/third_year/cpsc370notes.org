@@ -631,18 +631,58 @@ allImprov^(1000) undefinied = {correct up to length 999}
   - also useful for forcing flow
   myNot(Goal) :- once(Goal), !, fail.
   myNot(Goal).
-- unification
-  - if we have two terms with variables, a unifier is a list of variable assignments that make the terms identical
-    cat(house, bat(X), U)
-    cat(V, Y,dog(V))
-    is there a list of assignments for U,V,X,Y that will make those terms identical
-    V = house
-    U = dog(house)
-    Y = bat(X)
-  - variable
-    - if the variable is already bound, replace it with the binding
-    - if the variable isn't bound, bind it to the other term
-      - ex. if you've got an unbound u and you are matching it to "cat" then add u="cat" to the unifier 
-  - 
+
+** unification
+- if we have two terms with variables, a unifier is a list of variable assignments that make the terms identical
+  cat(house, bat(X), U)
+  cat(V, Y,dog(V))
+  is there a list of assignments for U,V,X,Y that will make those terms identical
+  V = house
+  U = dog(house)
+  Y = bat(X)
+- variable
+  - if the variable is already bound, replace it with the binding
+  - if the variable isn't bound, bind it to the other term
+    - ex. if you've got an unbound u and you are matching it to "cat" then add u="cat" to the unifier
+    - it matters operationally which variable to bind if unifying two unbound variables
+	- THE OCCURS CHECK
+- Atoms
+  - only unify with themselves
+- Terms
+  - only unify with terms
+  - the heads and arities must match
+    - app(a,b,c) wont match app(a,b)
+  - the arguments must pairwise unify
+    - app(a,b,X) would match app(X,b,Y)
+	- X = a, Y = a
+
+** metalogical predicates
+#+BEGIN_SRC prolog
+plus(X,Y,Z) :- var(Y), !, Y is Z - X
+plus(X,Y,Z) :- var(X), !, X is Z - Y
+plus(X,Y,Z) :- var(Z), !, Z is X + Y
+#+END_SRC
+
+#+BEGIN_SRC prolog
+plus(X,Y,Z) :- Z is X+Y
+#+END_SRC
+is a metalogical prediacate, var, nonvar, ground
+
+- type predicates
+  - atom
+  - atomic
+  - number
+
+integer(X), is true if X is an integer
+
+** control predicates
+!, not, fail/false, true, repeat
+
+** a final exam question
+given two terms do they unify?\\
+ex:\\
+fred(cat(z), w)\\
+fred(cat(w), y)\\
+w = z, y = z\\
     
  

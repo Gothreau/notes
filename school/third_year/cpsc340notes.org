@@ -712,7 +712,36 @@ not RE
     1. do something with it (he crossed the stuff he had out)
   - L_1 and L_2 are RE. is L_1 ∩ L_2 RE? why?
     - yes give a program that does:
+#+BEGIN_SRC pseudo
       if P_1(x) and P_2(x) output yes
       otherwise never halt
-   
+#+END_SRC
 
+* last years exam
+- 10 questions
+- construct regular grammar for language denoted by regular expression b^{*}a(bba⃰b⃰)
+- design a PDA to accept the language where n_a(w) is the number of a's in a string and so on
+  - {w|w \in {a,b,c,d}⃰ and n_a(w) = n_b(w) + n_c(w)}
+- halting problem, is there any H which can do the following job
+  - for any input pair (X,Y), H will output 'yes' if program X halts when run on input Y and output 'No' otherwise
+  - prove H does not exist
+  - possible modification of question: if H exists then show that the 3x+1 problem has a solution
+- is the language L = {a^{i+1}b^{i}c^{k}| i \le k-j and i,j,k \geq 0} regular, prove or disprove
+- design a context free grammar for the language
+  - {a^{n+2}b^{n}|n\ge1} \cup {a^{2n}b^{n+1}|n\ge0}
+  - HINT: make two grammars then combine, be sure to write formally
+- consider the grammar G = ({S,A,B}, {a,b}, P, S) where P is the set of productions
+  - S \rightarrow Aab|baB
+  - A \rightarrow bB|aA|\epsilon
+  - B \rightarrow Bb|aB|\epsilon
+  - answer the following yes/no questions
+    - is G context free?
+    - is G regular?
+    - is L(G) a context free language?
+    - is L(G) a regular language?
+- here is a transition table for DFA:
+|      | a  | b  | c  |
+| \rightarrow q_1 | q_2 | q_1 | q_3 |
+| *q2  | q_3 | q_1 | q_2 |
+| *q_3  | q_3 | q_2 | q_3 |
+construct the transition diagram for the DFA and convert the DFA to a regex using state-elimination technique  
