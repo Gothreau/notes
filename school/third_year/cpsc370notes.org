@@ -686,3 +686,44 @@ fred(cat(w), y)\\
 w = z, y = z\\
     
  
+* review
+- product of a list
+#+BEGIN_SRC prolog
+product([], 1).
+product([X|Xs], Y) :- product(Xs, Z),
+                      Y is X * Z.
+#+END_SRC
+#+BEGIN_SRC haskell
+product = prod 1 where 
+       prod acc [] = acc
+       prod acc (x:xs) = prod (acc*x) xs
+#+END_SRC
+- possible test question: reverse list in prolog
+- course overview
+  - memorization trick
+    - shrink things down
+      - start by categorizing
+      - then combine categories
+      - then merge into one word
+      - then remember that word and unpack it in your head when neccesary
+- types of language
+  - static vs dynamic
+  - strict vs lazy
+    - strict
+      - scheme
+      - prolog, unification happens on the head before you start working on the body
+    - lazy
+      - haskell
+- do notation / monads
+  - probably not too much
+- underlying math
+  - whats a relation
+  - whats a function
+  - what's a partial function
+    - how to count partial functions
+  - what's a maybe type good for
+    - good way to represent partial functions
+  - some form of translation question, translate a prolog statement to 141 math
+- prolog unification questions
+
+

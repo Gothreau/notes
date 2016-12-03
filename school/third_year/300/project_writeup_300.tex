@@ -1,0 +1,40 @@
+\documentclass{article}
+\begin{document}
+\title{CPSC 300 Project Report}
+\author{Barry Warnock\\
+  230113824}
+\date{December 5, 2016}
+\maketitle
+
+
+\section*{Introduction}
+For this project we were asked to set up a web interface with a nodeJs backend that would read and graph data from
+a NIRS (Near-infrared spectroscopy) sensor. These sensors are used to detect blood flow by bouncing near infrared light
+through the skin and measuring how much it can read through the skin. we opted to drop the nodeJs in favour of making
+it a chrome web app to simplify both development as well as set up for the end user.
+
+\section*{Contribution}
+We broke down the project into three parts, front-end, device through USB, and device through Bluetooth. I was assigned to make the device
+work through Bluetooth. A point by point high level breakdown of my contribution is as follows:
+\begin{itemize}
+\item after Jeremy discovered that Chrome might have the functionality we need I managed to find the specific parts of the API
+  that we needed
+\item I along with Adam and Jeremy planned out a data structure to use for the device data
+\item Me and Adam experimented with the device to figure out how it and the API worked, this led me to discover that
+  the API we really wanted was chrome.serial which would allow us to treat USB and Bluetooth the same way
+\item I wrote code that was able to detect the device but was unable to read from it
+\end{itemize}
+Unfortunately we were unable to get the device to work, our theory is that it was waiting for some byte-sequence
+before it would stop sending data. We did end up getting the source code to the program that is currently being used to get the
+NIRS data but it was too late.
+
+\section*{Feedback}
+Overall I would say that we were absolutely asked to use the wrong technology, JavaScript is fine for web scripting in a web page but for
+a program that needs to interact with external devices where the user wants the ui to react like a desktop application on a windows computer there
+are much better decisions (C\#, Java, Python). Additionally if we were to have made this a client-server application not only would this
+have made development more complex, it would have also required anybody who wanted to use it to set up a NodeJs stack on their device.
+
+As far as the actual engineering section goes I think it may have helped to have access to the software we were meant to replace from the start.
+It would have helped show us what functionality we need as well as see how the device works. 
+
+\end{document}
