@@ -8,14 +8,24 @@
 
 
 \section*{Introduction}
-Describe the software briefly and set the context for your contribution.
-For our project we were asked to design and implement a file system for NAND based flash memory
+For our project we were asked to design and implement a file system for NAND based flash memory, the functionality we wanted was and write for
+both files and directories. We decided to go with a heavily simplified version of inode because inode is well documented and seemed fairly simple to
+implement.
 
 \section*{Contribution}
-Describe your contribution and your interaction with other developers
-during this project period.
+It is hard to say what specific part of the project we each worked on since we all worked on the same things with a fair amount of pair programming.
+The parts I specialized in the most are the following:
+\begin{itemize}
+\item since I was the only one with a history in C I think it's fair to say I had the best understanding of pointers and so did a fair amount
+  of debugging in that area
+\item I helped in the design of our data structures and it was me who wrote our first implementation of all of the required structs
+\item due to my understanding of C's memory model I also worked a fair bit with our de/serialization functions
+\end{itemize}
 
 \section*{Feedback}
-Describe your overall experience and suggestions for the future
+I quite enjoyed learning about filesystems and how they work but a lot of the information we were given was wrong. We were told we would need to
+write a FTL when in fact that was not the case so we wasted a lot of time there. The papers we were given talked about the specifics
+of implementing a filesystem on NAND flash drives talked a lot about the FTL while really glazing over the data structures involved in
+the filesystem part of the project.
 
 \end{document}

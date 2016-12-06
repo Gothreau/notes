@@ -1,0 +1,1127 @@
+% Created 2016-12-05 Mon 16:09
+\documentclass[11pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{fixltx2e}
+\usepackage{graphicx}
+\usepackage{longtable}
+\usepackage{float}
+\usepackage{wrapfig}
+\usepackage{rotating}
+\usepackage[normalem]{ulem}
+\usepackage{amsmath}
+\usepackage{textcomp}
+\usepackage{marvosym}
+\usepackage{wasysym}
+\usepackage{amssymb}
+\usepackage{hyperref}
+\tolerance=1000
+\author{Barry }
+\date{\today}
+\title{cpsc370notes}
+\hypersetup{
+  pdfkeywords={},
+  pdfsubject={},
+  pdfcreator={Emacs 25.1.1 (Org mode 8.2.10)}}
+\begin{document}
+
+\maketitle
+\tableofcontents
+
+\section{lecture 2}
+\label{sec-1}
+\subsection{relations}
+\label{sec-1-1}
+\begin{itemize}
+\item a relation r from A to B is a subset of A x B
+\begin{itemize}
+\item or sometimes (A, B, r) where r is a subset of A X B
+\end{itemize}
+\item for a function the set A is called the domain and B is the co-domain
+\end{itemize}
+
+\subsection{functions}
+\label{sec-1-2}
+\begin{itemize}
+\item a function f from A to B ( f: A->B) satisfies the two rules
+\begin{itemize}
+\item (i) must answer every question
+\begin{itemize}
+\item for all a in A there exists a b in B such that (a,b) is in f
+\end{itemize}
+\item (ii) one answer per question
+\begin{itemize}
+\item for any a in A and any b1,b2 in B if (a,b1) and (a,b2) are both in f then b1=b2
+\end{itemize}
+\end{itemize}
+\item a partial function f from A to B is a relation that satisfies ii
+\begin{itemize}
+\item relevant to cs because programming functions dont neccesarily have an answer for every value
+\end{itemize}
+\item given finite sets A and B how many functions are there from A to B
+\begin{itemize}
+\item |B$^{\text{A|}}$ = |B|$^{\text{|A|}}$
+\end{itemize}
+\item how many partial functions are there from A to B
+\begin{itemize}
+\item add an unknown to B then the answer is (|B U \{?\}|$^{\text{|A|}}$)
+\begin{itemize}
+\item like null
+\end{itemize}
+\end{itemize}
+\item how do we cope with multiple arguments in a function
+\begin{itemize}
+\item mathematics treats multi-arg functions as functions from a cross-product
+\begin{itemize}
+\item fourier: (Integers x Real numbers) -> Real numbers
+\end{itemize}
+\end{itemize}
+\end{itemize}
+
+\section{lecture 3}
+\label{sec-2}
+\begin{itemize}
+\item currying is functions that return functions and is a way to deal with multiple argument functions
+\begin{itemize}
+\item a function from AxB to C can be though of as a function from a to a function of B to C
+\item named after a logistian Haskell Curry
+\begin{itemize}
+\item invented by Schonfinkel (o has an umlout)
+\end{itemize}
+\end{itemize}
+\item two charateristics of a programming language that suggest it's functional are
+\begin{itemize}
+\item anonymous functions
+\item the ability to return functions from functions
+\end{itemize}
+\item Haskell syntax
+\begin{itemize}
+\item g (n,x) = sin (fromRational n * x)
+\begin{itemize}
+\item can also include types by putting the following first g :(two colons) Int * Double -> Double
+\item curried version: f n x = sin (fromRational n * x)
+\begin{itemize}
+\item f3 = f(3)
+\item f3(2.75)
+\end{itemize}
+\end{itemize}
+\item -- is a comment in Haskell (minus minus)
+\end{itemize}
+\item Scheme syntax
+\begin{itemize}
+\item (define (g n x) (sin (* n x)))
+\begin{itemize}
+\item (g 3 4.5)
+\end{itemize}
+\end{itemize}
+\end{itemize}
+
+\section{lecture 4}
+\label{sec-3}
+syntax notes for haskel
+\begin{itemize}
+\item funtion application is juxtaposition (placing next to eah other)
+\begin{itemize}
+\item f (x) = x + 1
+\begin{itemize}
+\item f (16)
+\item or 'f 16' both are valid
+\end{itemize}
+\item juxtaposition binds very tightly
+\item there is an operator '\$' which has low precedence and binds right to left
+\end{itemize}
+\item ordinary names in haskell consist of letters, numbers and \_, with the usual rules
+\begin{itemize}
+\item functions \& variables have names that start with lower case letters
+\item operator names
+\begin{itemize}
+\item consist of !\#\$\%\&+\_./*<=>?@$\backslash$$^{\text{|}}$\textasciitilde{} and :
+\end{itemize}
+\end{itemize}
+\item use function in an infix way by placing them in backticks
+\begin{itemize}
+\item 3 `f` 1
+\end{itemize}
+\item operators can be used in a prefix way by surrounding with ()
+\begin{itemize}
+\item + 5 7
+\end{itemize}
+\item syntactic sugar
+\begin{itemize}
+\item makes a language sweeter
+\item adds usability to a language without adding functionality
+\end{itemize}
+\end{itemize}
+\subsection{{\bfseries\sffamily DONE} read learn you a haskell for great good chapter 2}
+\label{sec-3-1}
+\subsection{{\bfseries\sffamily DONE} question 1}
+\label{sec-3-2}
+email
+\subsection{{\bfseries\sffamily DONE} question 2}
+\label{sec-3-3}
+explain how to write a function to return a*(x$^{\text{2}}$)+b*x+c
+\subsection{{\bfseries\sffamily DONE} question 3}
+\label{sec-3-4}
+write a curryed function to return the function x-> ax$^{\text{2}}$ + bx + c and execute it in 
+\begin{itemize}
+\item java
+\item haskell
+\item racket
+\end{itemize}
+\section{lecture 5}
+\label{sec-4}
+\begin{itemize}
+\item basic list in functional languages
+\begin{itemize}
+\item lists are singly linked
+\item frequently immutable
+\item made from cons cells and the empty list
+\begin{itemize}
+\item cons cells are a pinter to a piece of data and the rest of the list
+\end{itemize}
+\end{itemize}
+\item static typing
+\begin{itemize}
+\item a language is statically typed if you can work out the type of every expression at compile time
+\item a language is statically typed if there is an algorithm to determine the type of the expression
+\end{itemize}
+\end{itemize}
+
+\subsection{{\bfseries\sffamily DONE} question 4}
+\label{sec-4-1}
+How many partial functions are there from \{ Scissors, Paper, Rock, Spock, Lizard \} 2 to \{ Win, Lose \} ?
+How many of these are fair and interesting?
+\subsection{{\bfseries\sffamily DONE} read chapters 3+4}
+\label{sec-4-2}
+\section{lecture 6}
+\label{sec-5}
+in functional languages functions are first class entities, first class means something like fully integrated into the
+language
+\begin{itemize}
+\item first class
+\begin{itemize}
+\item create literals and/or use without naming
+\item use them as arguments or return types
+\item store them in arrays and other data structures
+\item read/write to/from files
+\item compare for equality
+\item order them
+\item look inside their contents
+\end{itemize}
+\item haskel function to determine length of a list
+\end{itemize}
+length [] = 0
+length (\_:xs) = 1 + length xs
+\begin{itemize}
+\item fib (not great)
+\end{itemize}
+fib n = if n == 0
+        then 0
+        else if n == 1
+             then 1
+             else fib(n-1) + fib(n-2)
+\begin{itemize}
+\item fib good
+\end{itemize}
+fib 0 = 0
+fib 1 = 1
+fib n = fib(n-1) + fib(n-2)
+\begin{itemize}
+\item another fib
+\end{itemize}
+fib n
+\begin{center}
+\begin{tabular}{l}
+n == 0    = 0\\
+n == 1    = 1\\
+n < 0     = undefined\\
+otherwise = fib(n-1) + fib(n-2)\\
+\end{tabular}
+\end{center}
+\section{lecture 7}
+\label{sec-6}
+c(n) = 3n+1 if n is odd, n/2 if n is even
+\section{lecture 8}
+\label{sec-7}
+haskell merge sort:
+mergeSort [] = []
+mergeSort [x] = [x]
+mergeSort xs = merge front back where
+     front = mergeSort \$ m `take` xs 
+     back = mergeSort \$ m `drop` xs
+     m = length xs `div` 2
+     merge [] ys = ys
+     merge xs [] = xs
+     merge (x:xs) (y:ys) =
+         if y<x
+         then y : merge (x:xs) ys
+         else x : merge xs (y:ys)
+
+\begin{itemize}
+\item to use recursion
+\begin{enumerate}
+\item I need a well ordered domain (for any subset there is a lease element)
+\item I need to know the answers for base cases
+\item I need to know how to link the answer of a general problem to the answer of a smaller problem
+\end{enumerate}
+\item 
+\end{itemize}
+\section{lecture 9}
+\label{sec-8}
+\begin{itemize}
+\item homeworks 1-4 are due oct 4
+\item spent the whole class working on the same problem from lecture 7, started in haskell
+\end{itemize}
+\section{lecture 10}
+\label{sec-9}
+how to write zip in haskel (takes two lists and returns a list of pairs)
+
+zip \_ [] = []
+zip [] \_ = []
+zip (x:xs) (y:ys) = (x, y) : zip xs ys
+
+\begin{itemize}
+\item strict vs lazy languages
+\begin{itemize}
+\item a language uses strict evaluation (is strict) if it always evaluates the arguments of a function 
+before evaluating the body of the function
+\item a language is lazy if it  only evaluates function arguments when they are used
+\end{itemize}
+\end{itemize}
+
+consider:
+pi1 x y = x
+badloop x = badloopx
+pi1 true (badloop false)
+
+in a lazy language we would get true in a strict language we get stuck forever
+
+sq x = x * x
+sq (sq (sq (sq (1+1) )))
+-- a more haskelly way to do this would be
+sq . sq .sq . sq \$ 1 + 1
+-- . is function composition
+
+\begin{itemize}
+\item a lazy language would multiply 1+1 many times because it would try to evaluate things one layer at a 
+time, a strongly typed language would multiply 1+1 once.
+\begin{itemize}
+\item no real lazy language would actually do this, a well designed interpreter/compiler will make sure 
+arguments are computed 0 or 1 times
+\end{itemize}
+
+\item scheme is strict
+\item haskell is lazy
+\item java is strict
+\item most languages are strict
+\item smart laziness involves only evaluating an argument at most once
+\end{itemize}
+
+(define (square x) (* x x))
+(define (side-effect)
+    (begin
+    (displayln "Hi")
+    2)) ;; returns 2 with the side effect of printing to the screen
+(square (square side-effect))
+
+\begin{itemize}
+\item in a strict language Hi is printed once
+\item in a lazy language square will fracture multiple times an side effect would be called multiple times
+\begin{itemize}
+\item sq (sq side-effect)
+\begin{itemize}
+\item sq (side-effect * side-effect)
+\begin{itemize}
+\item (side-effect * side-effect) * (side-effect * side-effect)
+\end{itemize}
+\end{itemize}
+\end{itemize}
+\item laziness only makes sense in pure (non-side-effecting) languages
+\begin{itemize}
+\item haskell is pure
+\end{itemize}
+\item a "thunk" is either
+\begin{itemize}
+\item a technique for creating a delayed computation (our use)
+\item a way to implement run time method selection especially in multiple inheritance languages
+\end{itemize}
+\end{itemize}
+
+
+\begin{itemize}
+\item a thunk is one of two things
+\begin{itemize}
+\item a way of delaying an operation (our use)
+\begin{itemize}
+\item replace an expression with something that stands for it so we don't have to recompute a value
+\end{itemize}
+\item a way of picking a method in a multi-inheritance language
+\end{itemize}
+\end{itemize}
+
+define f (Î» () (+ 2 3)) )
+Racket boxes
+box
+unbox
+setbox!
+
+(define g (box 5))
+(setbox! g "cat")
+
+;; a box is like a one element array
+
+g -> [] -> 5
+\begin{center}
+\begin{tabular}{}
+\\
+\end{tabular}
+\end{center}
+  v
+"cat"
+
+(define (delay f)
+    (box (cons \#false f))
+)
+
+(define (force g)
+  (let ([contents (unbox g)])
+  (if (car contents)
+      (cdr contents)
+      (let ([result ((cdr contents))])
+           (setbox! g (cons \#true result))
+           result)
+  )
+  )
+)
+
+
+\rule{\linewidth}{0.5pt}
+fib$_{\text{nums}}$ = 0:1:zipWith (+) fib$_{\text{nums}}$ (drop 1 fib$_{\text{nums}}$)
+
+this is fine as long as we don't try to compute all of them
+take 1000 fib$_{\text{nums}}$
+would work fine
+
+\subsection{{\bfseries\sffamily DONE} miderm}
+\label{sec-9-1}
+\begin{itemize}
+\item summarize laziness
+\item summarize strictness
+\item example where it makes a difference
+\item explain what a thunk is and why we use it
+\begin{itemize}
+\item why do we have thunks in lazy languages
+\begin{itemize}
+\item so we don't have to evaluate arguments multiple times
+\end{itemize}
+\end{itemize}
+\item which of the two languages we're studying are lazy
+\item which is statically typed
+\item why are functional languages tricky
+\item recursion
+\end{itemize}
+
+\subsection{{\bfseries\sffamily DONE} curry/uncurry functions}
+\label{sec-9-2}
+f x y = x+y
+ff (x,y) = x+y
+
+\begin{itemize}
+\item in haskell write an uncurry function so that (uncurry f) is the samme as ff.
+\item in racket write a curry function
+\end{itemize}
+
+\section{lecture 11}
+\label{sec-10}
+\begin{itemize}
+\item Environments
+\begin{itemize}
+\item abstractly an environment is a dictionary mapping identifiers to their meanings at some particular time
+\end{itemize}
+\end{itemize}
+
+public static int fact(int n) \{
+  if (n == 0)
+     return 1;
+  else return n * fact(n-1);
+\}
+
+stack:
+\begin{center}
+\begin{tabular}{ll}
+fact & \footnotemarkn\\
+fact & \footnotemarkn & <- stack frame\\
+fact & \footnotemarkn\\
+. & \\
+. & \\
+. & \\
+main & \\
+\end{tabular}
+\end{center}\footnotetext[1]{DEFINITION NOT FOUND.}\footnotetext[2]{DEFINITION NOT FOUND.}\footnotetext[3]{DEFINITION NOT FOUND.}
+
+\begin{itemize}
+\item stacks work fine for when you just have flat functions, or even functions with functions inside of them 
+but when you start returning functions it gets a bit messy
+\item environments in languages with recursion but w/o functions returning functions are usually implemented with stacks
+\end{itemize}
+
+line (m, b) x = m * x + b
+
+-- more explicit currying
+line (m, b) = let 
+     f y = m * y + b
+     m f
+
+line30 = line (3, 0)
+line12 = line (1, 2)
+
+line30 15 --what does the memory diagram look like here
+
+\begin{itemize}
+\item two ways of doing this
+\begin{itemize}
+\item line30 calls the compiler and you compile some code
+\item a function has a pair of pointers
+\begin{itemize}
+\item a code pointer (points to code common to line30 and line12)
+\item environment/closure pointer which points at some storage somewhere (probably the heap)
+that has what we want
+\end{itemize}
+\end{itemize}
+\end{itemize}
+\section{lecture 12}
+\label{sec-11}
+\begin{itemize}
+\item live
+\begin{itemize}
+\item data that will be used again
+\item implies reachable
+\item not computable
+\end{itemize}
+\item dead
+\begin{itemize}
+\item not that
+\item not computable
+\end{itemize}
+\item reachable
+\begin{itemize}
+\item data you can find by following pointers starting from global and stack variables
+\item computable
+\end{itemize}
+\item unreachable
+\begin{itemize}
+\item not that
+\item implies dead
+\item computable
+\end{itemize}
+\item tail position
+\begin{itemize}
+\item one chunk of sub-code is in tail position w.r.t. a surrounding piece of code if it will execute last
+\end{itemize}
+\item a tail-call is a call that is in tail position (usually w.r.t. some function)
+\item at the point of a tail call the callee's environment s dead
+\item tail optimization is the act of removing the callee's environment before starting a tail call
+\item tail call optimization is just a call in a tail position, recursion isn't necessary
+\begin{itemize}
+\item important in recursion because that's where you're getting a lot of stack frames
+\end{itemize}
+\item 
+\end{itemize}
+\section{lecture 13 \textit{[2016-10-19 Wed]}}
+\label{sec-12}
+\begin{itemize}
+\item strategies for making tail recursive
+\begin{enumerate}
+\item generalize
+\item use accumilator
+\item keep a list of work to do
+\end{enumerate}
+\item datatypes (haskel)
+datatype Tree a = Empty
+\begin{center}
+\begin{tabular}{l}
+Branch a (Tree a)(Tree a)\\
+\end{tabular}
+\end{center}
+fred :: Tree Int
+fred = Branch 3 (Branch 2 Empty Empty) Empty
+
+ note: 
+ fred =  3
+        / $\backslash$
+       / [empty]
+      2
+     / $\backslash$
+    /   $\backslash$
+   /     $\backslash$
+[empty] [empty]
+
+makeTree [] = Empty
+makeTree (x:xs) = Branch x Empty (makeTree xs) -- a long scragly tree, all to the right
+
+makeTree xs = let
+         n = length xs
+         m = (n-1) `div` 2
+         ls = take m xs
+         r:rs = drop m xs
+         in Branch r (makeTree ls) (makeTree rs)
+
+countNodes [] = 0
+countNodes (Branch \_ l r) = 1 + (countNodes l) + (countNodes r)
+
+countNode = helper 0 [] where
+  helper acc list (Branch \_ l r) =
+    helper (acc + 1) (r:list) l
+  helper acc list Empty = dispatch acc list
+    dispatch acc [] = acc
+    dispatch acc (tree:work) = helper acc work tree
+\end{itemize}
+\section{lecture 15 \textit{[2016-10-31 Mon]}}
+\label{sec-13}
+\begin{itemize}
+\item monads
+\begin{itemize}
+\item ?
+\end{itemize}
+\item persistent
+\begin{itemize}
+\item cant see it change
+\item ownership issues are gone
+\item data can be shared
+\item copies can be shallow
+\item equality can be reduced to pointer equality (with work)
+\end{itemize}
+\item ephemeral
+\begin{itemize}
+\item can see it change
+\item some classical data stuctures (array) have no obvious persistent analog
+\item classical algorithms need to be adapted to persistent data structures
+\end{itemize}
+\item persistent data structures allow us to think in new ways
+\end{itemize}
+\section{lecture 16 \textit{[2016-11-02 Wed]}}
+\label{sec-14}
+Queue:
+data Queue a = Q[a][a][a] -- Q head, worker, tail
+-- the length of the head == length of the worker + the length of tail
+\section{lecture 17 \textit{[2016-11-04 Fri]}}
+\label{sec-15}
+\begin{itemize}
+\item Monad
+\begin{itemize}
+\item has the following functions
+return :: a -> m a -- takes a something to a container of somethings
+(>>=) :: m a -> (a -> m b) -> m b
+\item once you have a monad you can use do notation
+\item lists as monads
+return a = [a]
+aList >>= f = concat(map f aList)
+\item do
+\begin{itemize}
+\item do
+a <- [10,20,30]
+b <- [1,2]
+return \$ a + b
+\begin{itemize}
+\item syntactic sugar for
+[10,20,30] >>= ($\backslash$ a ->
+  [1,2] >>= ($\backslash$ b -> [a+b]))
+\end{itemize}
+\end{itemize}
+\end{itemize}
+\end{itemize}
+\subsection{{\bfseries\sffamily DONE} midterm exam}
+\label{sec-15-1}
+\begin{itemize}
+\item recursion
+\item tail position
+\item tail call
+\begin{itemize}
+\item what's special about them?
+\item garbage collection
+\item how do they impact time and space
+\end{itemize}
+\item liveness
+\item deadness
+\item tail recursion
+\begin{itemize}
+\item how?
+\begin{itemize}
+\item generalize
+\item list of sub problems
+\item accumalator
+\item continuations
+\end{itemize}
+\end{itemize}
+\item continuations
+\item static vs dynamic binding
+\begin{itemize}
+\item static means you look around the code
+\item dynamic means you go up the call stack
+\item how do scheme and haskell use by default (static)
+\end{itemize}
+\item paramertarize
+\begin{itemize}
+\item force dynamic
+\end{itemize}
+\item persistent vs ephemeral
+\begin{itemize}
+\item what is an example of a persistent Java class (will be on midterm)
+\begin{itemize}
+\item String
+\end{itemize}
+\item how would you make a persistent queue in Haskell
+\begin{itemize}
+\item use at least two lists, a head and a reverse tail
+\end{itemize}
+\end{itemize}
+\item haskell type classes
+\begin{itemize}
+\item how to define
+\item instances
+\item what is a Monad
+\begin{itemize}
+\item why is it special
+\item desugar a do block
+\end{itemize}
+\end{itemize}
+\end{itemize}
+\section{lecture 18 \textit{[2016-11-09 Wed]}}
+\label{sec-16}
+\begin{itemize}
+\item 
+\end{itemize}
+\section{lecture 19 \textit{[2016-11-14 Mon]}}
+\label{sec-17}
+\begin{itemize}
+\item haskell
+\begin{itemize}
+\item f x = 3 * x + 1
+\end{itemize}
+\item prolog
+\begin{itemize}
+\item f(X, Y) :- Y is 3 * X + 1.
+\begin{itemize}
+\item uppercase is a variable
+\item is operator numerically evaluates its righthand side then the expression is true if both sides are equal
+\item syntactic sugar for '+'('*'(3,x),1)
+\end{itemize}
+\item prolog is relational not functional
+\item ?- f(3,11).
+\begin{itemize}
+\item False
+\end{itemize}
+\item ?- f(3, 10).
+\begin{itemize}
+\item True
+\end{itemize}
+\item ?- f(3, A).
+\begin{itemize}
+\item A = 10
+\end{itemize}
+\item f(X, 10).
+\begin{itemize}
+\item an error
+\end{itemize}
+\item ?- append(X, [4,5,6], [1,2,3,4,5,6]).
+\begin{itemize}
+\item X = [1,2,3]
+\end{itemize}
+\item ?- append(X, X, [1,2,3,4,5,6]).
+\begin{itemize}
+\item False
+\end{itemize}
+\item ?- append(X, Y, [1,2,3,4,5,6]).
+\begin{itemize}
+\item X = [], Y = [1..6];
+\end{itemize}
+\item n1.
+\begin{itemize}
+\item is just a fact which is equivalent to ..
+\begin{itemize}
+\item n1().
+\end{itemize}
+\end{itemize}
+\item fat(cat, fred(2, 3+1))
+\begin{itemize}
+\item an assertion
+\end{itemize}
+\item "think of prolog like partially digested natural language"
+\item 
+\item directlyNorthOf(pg, redRock).
+\item directlyNorthOf(redRock, stoner).
+\item directlyNorthOf(stoner, hixon).
+\item directlyNorthOf(hixon, quesnel)
+\item northOf(X, Y) :- directlyNorthOf(X, Y).
+\item northOf(X, Y) :- directlyNorthOf(X, Z), northOf(Z, Y).
+\item 
+\item prolog is all about universal horn clauses, where a universal horn clause is a universally 
+quantified disjunction of atomic clauses, all but one of which is negated
+\item practical notes
+\begin{itemize}
+\item ?- is the prompt in the interpreter
+\item ?- consult("filename.pl"). will read a file
+\item ?- make. will reconsult anything that's been consulted in this session
+\item ?- help(help). should give you a gui based browser
+\end{itemize}
+\end{itemize}
+\end{itemize}
+\section{lecture 20 \textit{[2016-11-16 Wed]}}
+\label{sec-18}
+\begin{itemize}
+\item prolog syntax
+\begin{itemize}
+\item comments
+\begin{itemize}
+\item \emph{\textbf{block comments}}
+\item \% line comments
+\end{itemize}
+\item strings are "double quoted" with $\backslash$ escapes
+\item `backticks are a string made of a list of chars'
+\item Variables start with Capitals
+\item \_ is a wildcard
+\item atoms start with lowercase letters or can be quoted with 'single quotes'
+\item lists are built using [] (empty) and [.|.] (cons) with lots of sugar support
+\begin{itemize}
+\item ex: [1,2,3] = [1 | [2 | [3 | [] ] ] ]
+\end{itemize}
+\end{itemize}
+\item prolog append
+append([], Ys, Ys).
+append([X|Xs], Ys, [X|Zs]) :- append(Xs, Ys, Zs).
+\item 
+\item λ-calculus
+\begin{itemize}
+\item (λ (x) (λ (y) (λ (z) \ldots{} )))
+\item λx.(x is bound in here)
+\item the pure λ-calculus is built from variables, abstractions and applications f(x)
+\item example
+\begin{itemize}
+\item flip f x y = f y x
+\item λfxy.[f(y)](x)
+\end{itemize}
+\end{itemize}
+\end{itemize}
+\section{lecture 21 \textit{[2016-11-19 Sat]}}
+\label{sec-19}
+\begin{itemize}
+\item α-conversion
+\begin{itemize}
+\item if you change the name of a bound variable it should not change the meaning
+\begin{itemize}
+\item λx.x should be the same as λy.y
+\end{itemize}
+\end{itemize}
+\item β-reduction is how the λ-calculus "works"
+\begin{itemize}
+\item (λx.T)(A) \textasciitilde{}~\textasciitilde{}~\textasciitilde{}> T[x/A]
+\begin{itemize}
+\item replace each x in T with A
+\begin{itemize}
+\item\relax [λx.sin(x)](3) \textasciitilde{}~\textasciitilde{}~\textasciitilde{}~\textasciitilde{}> sin(3)
+\item\relax [λx.(sin(x) + (λx.x)(5))](3)
+\end{itemize}
+\end{itemize}
+\end{itemize}
+\item de Bruijn indices
+\begin{itemize}
+\item look it up, seems important
+\end{itemize}
+\item how do we represent λ-calculus in Prolog?
+\begin{itemize}
+\item unbd(sin) unbound
+\item app(unbd(sin),unbd(3)) apply
+\item dB(3) de Bruijn indices
+\item abstractions
+\begin{itemize}
+\item abs(x, term) where x = string, term = λ-term
+\item abs0(x, term) where x is a suggested variable name, term uses dB(N) for x
+\end{itemize}
+\end{itemize}
+\item natural numbers in λ-calc
+\begin{itemize}
+\item two is λfx.f(f(x))
+\item abs("f", abs0("x", app(dB(1), app(dB(1), dB(0)))))
+\end{itemize}
+\item absToAbs0(Term1, Term2) :- absToAbs0(Term1, Term2, []).
+absToAbs0(app(F,X), app(F1, X1), List) :- 
+  absToAbs0(F, F1, List),
+  absToAbs0(x, X1, List).
+absToAbs0(unbd(X), unbd(X), \_).
+absToAbs0(Q, dB(N), List) :-
+  isVar(Q),
+  nth0(N, List, Q).
+absToAbs0(abs(X, Term), abs0(X, Term1), List) :-
+  absToAbs0(Term, Term1, [X|List]).
+\end{itemize}
+\section{lecture 22 \textit{[2016-11-21 Mon]}}
+\label{sec-20}
+\subsection{lambda calc turing machine}
+\label{sec-20-1}
+T : λxy.x
+F : λxy.y
+if : λxyz.xyz
+and : λpq.if(p)(q)(F)
+
+pair : λab.λc.if(c)(a)(b)
+first : λp.p(T)
+second : λp.p(F)
+
+from now on pairs are
+<a, b> = pair(a)(b)
+p1 = first(p)
+
+empty : <F,F>
+cons : λab.<T,<a,B>>
+empty? : λd.not(d1)
+cons? : λd.d1
+car : λd.(d2)1 
+cdr : λd.(d2)2
+
+\subsection{numbers (do a thing n times)}
+\label{sec-20-2}
+0: λfx.x
+1: λfx.f(x)
+2: λfx.f(f(x))
+
+zero: λN.N(λx.F)(T)
+add1: λNfx:Nf(f(x))
+
+operators
++: λmn.λfx.m(f)(nfx)
+*: λmn.λfx.m(nf)x
+
+
+
+
+
+
+\subsection{recursion}
+\label{sec-20-3}
+how to do recursion without recursive function definitions. the μ (or Y) combinator
+
+length [] = 0
+length (\_:xs) = 1 + length xs
+
+ellImprov f [] = 0
+ellImprov f (\_:xs) = 1 + f xs
+
+ellImprov length = length
+ellImprov undefined = \{[] -> 0, otherwise -> undefined\}
+
+ellImprov ellImprov (ellImprov undefined) = \{correct for length <= 1, otherwise undefined\}
+allImprov$^{\text{(1000)}}$ undefinied = \{correct up to length 999\}
+
+μ gg x = gg (μ gg)x
+
+\section{lecture 23 \textit{[2016-11-25 Fri]}}
+\label{sec-21}
+\begin{itemize}
+\item DCCs are syntactic sugar
+goal(fred(A,B,C))
+          -->
+           matchA(A), matchB(B), MatchC(C)
+
+goal(fred(A,B,C), In, Out) :-
+  matchA(A, In, Out1),
+  matchB(B, Out1, Out2),
+  matchC(C, out2, Out).
+
+goal(x, "aabbbc!" out)
+x = fred("aa","bbb","c")
+out = "!"
+\end{itemize}
+\section{lecture 25 \& 26 \textit{[2016-11-28 Mon]}}
+\label{sec-22}
+\begin{itemize}
+\item program
+pred
+pred
+\item bindings
+goal
+\begin{center}
+\begin{tabular}{}
+\\
+\end{tabular}
+\end{center}
+  v
+goal 2
+\item backtrack stack
+\end{itemize}
+\begin{center}
+\begin{tabular}{l}
+state of the machine at some point\\
+state of the machine at some point\\
+\end{tabular}
+\end{center}
+\begin{itemize}
+\item if you run out of goals you succeed
+\item not matching a goal causes backtracking
+\item attempting to backtrack when backtrack stack is empty results in failure
+\item when a goal matches the head of a rule
+\begin{enumerate}
+\item add unification bindings
+\item replace the goal with the RHS of the rule
+\begin{itemize}
+\item depth first search
+\end{itemize}
+\item possibly add an entry to backtrack stack
+\end{enumerate}
+\item the cut (!) 0 arg predicate
+\begin{itemize}
+\item always succeeds
+\item removes choice points introduced since matching the head of the current rule
+\item is useful if we know some choices will fail
+\item also useful for forcing flow
+\end{itemize}
+myNot(Goal) :- once(Goal), !, fail.
+myNot(Goal).
+\end{itemize}
+
+\subsection{unification}
+\label{sec-22-1}
+\begin{itemize}
+\item if we have two terms with variables, a unifier is a list of variable assignments that make the terms identical
+cat(house, bat(X), U)
+cat(V, Y,dog(V))
+is there a list of assignments for U,V,X,Y that will make those terms identical
+V = house
+U = dog(house)
+Y = bat(X)
+\item variable
+\begin{itemize}
+\item if the variable is already bound, replace it with the binding
+\item if the variable isn't bound, bind it to the other term
+\begin{itemize}
+\item ex. if you've got an unbound u and you are matching it to "cat" then add u="cat" to the unifier
+\item it matters operationally which variable to bind if unifying two unbound variables
+\begin{itemize}
+\item THE OCCURS CHECK
+\end{itemize}
+\end{itemize}
+\end{itemize}
+\item Atoms
+\begin{itemize}
+\item only unify with themselves
+\end{itemize}
+\item Terms
+\begin{itemize}
+\item only unify with terms
+\item the heads and arities must match
+\begin{itemize}
+\item app(a,b,c) wont match app(a,b)
+\end{itemize}
+\item the arguments must pairwise unify
+\begin{itemize}
+\item app(a,b,X) would match app(X,b,Y)
+\begin{itemize}
+\item X = a, Y = a
+\end{itemize}
+\end{itemize}
+\end{itemize}
+\end{itemize}
+
+\subsection{metalogical predicates}
+\label{sec-22-2}
+\begin{verbatim}
+plus(X,Y,Z) :- var(Y), !, Y is Z - X
+plus(X,Y,Z) :- var(X), !, X is Z - Y
+plus(X,Y,Z) :- var(Z), !, Z is X + Y
+\end{verbatim}
+
+\begin{verbatim}
+plus(X,Y,Z) :- Z is X+Y
+\end{verbatim}
+is a metalogical prediacate, var, nonvar, ground
+
+\begin{itemize}
+\item type predicates
+\begin{itemize}
+\item atom
+\item atomic
+\item number
+\end{itemize}
+\end{itemize}
+
+integer(X), is true if X is an integer
+
+\subsection{control predicates}
+\label{sec-22-3}
+!, not, fail/false, true, repeat
+
+\subsection{a final exam question}
+\label{sec-22-4}
+given two terms do they unify?\\
+ex:\\
+fred(cat(z), w)\\
+fred(cat(w), y)\\
+w = z, y = z\\
+
+\section{review}
+\label{sec-23}
+\begin{itemize}
+\item product of a list
+\end{itemize}
+\begin{verbatim}
+product([], 1).
+product([X|Xs], Y) :- product(Xs, Z),
+		      Y is X * Z.
+\end{verbatim}
+\begin{verbatim}
+product = prod 1 where 
+       prod acc [] = acc
+       prod acc (x:xs) = prod (acc*x) xs
+\end{verbatim}
+\begin{itemize}
+\item possible test question: reverse list in prolog
+\item course overview
+\begin{itemize}
+\item memorization trick
+\begin{itemize}
+\item shrink things down
+\begin{itemize}
+\item start by categorizing
+\item then combine categories
+\item then merge into one word
+\item then remember that word and unpack it in your head when neccesary
+\end{itemize}
+\end{itemize}
+\end{itemize}
+\item types of language
+\begin{itemize}
+\item static vs dynamic
+\item strict vs lazy
+\begin{itemize}
+\item strict
+\begin{itemize}
+\item scheme
+\item prolog, unification happens on the head before you start working on the body
+\end{itemize}
+\item lazy
+\begin{itemize}
+\item haskell
+\end{itemize}
+\end{itemize}
+\end{itemize}
+\item do notation / monads
+\begin{itemize}
+\item probably not too much
+\end{itemize}
+\item underlying math
+\begin{itemize}
+\item whats a relation
+\item whats a function
+\item what's a partial function
+\begin{itemize}
+\item how to count partial functions
+\end{itemize}
+\item what's a maybe type good for
+\begin{itemize}
+\item good way to represent partial functions
+\end{itemize}
+\item some form of translation question, translate a prolog statement to 141 math
+\end{itemize}
+\item prolog unification questions
+\end{itemize}
+% Emacs 25.1.1 (Org mode 8.2.10)
+\end{document}

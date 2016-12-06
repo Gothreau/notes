@@ -82,6 +82,7 @@
   - email
   - chrome
 
+** post death be cremated and placed in an hourglass
 * school
 * food
 |        | Mon      | Tue                  | Thu              | Fri     | Sat            | Sun                  |

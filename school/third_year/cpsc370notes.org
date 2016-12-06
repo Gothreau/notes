@@ -685,7 +685,6 @@ fred(cat(z), w)\\
 fred(cat(w), y)\\
 w = z, y = z\\
     
- 
 * review
 - product of a list
 #+BEGIN_SRC prolog
