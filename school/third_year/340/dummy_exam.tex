@@ -95,7 +95,11 @@
   Here is a transition table for a DFA:
   \begin{center}
     \begin{tabular}{c|c|c}
-      $\rightarrow q1$
+      &0&1\\
+      \hline
+      $\rightarrow q_2$&$q_2$&$q_1$\\
+      $q_2$&$q_3$&$q_1$\\
+      $*q_3$&$q_3$&$q_2$
     \end{tabular}
   \end{center}
 
