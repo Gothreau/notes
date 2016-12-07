@@ -1,0 +1,378 @@
+\usepackage{amsmath}
+\documentclass{exam}
+\runningfooter{CPSC 340}{Practice Exam}{Page \thepage\ of \numpages}
+\runningfootrule
+\begin{document}
+\title{CPSC 340 Practice Exam}
+\date{}
+\author{please report any errors to\\
+warnock@unbc.ca}
+\maketitle
+
+\section*{Problems From Homework}
+\begin{questions}
+  \question
+  Give DFA's accepting the following languages over the alphabet \{0,1\}
+  \begin{parts}
+    \part
+    The set of all strings ending in 00.
+    \part
+    The set of all strings with three consecutive 0's.
+    \part
+    the set of strings with 011 as a sub string.
+  \end{parts}
+
+  \question
+  Let A be a DFA and \textit{a} a particular input symbol of A, such
+  that for all states \textit{a} of A we have $\delta(q, a) = q$.
+  \begin{parts}
+    \part
+    Show by induction on n that for all $n \ge 0, \delta(q,a^n) = 1$,
+    where $a^n$ is the string consisting of n a's.
+    \part
+    Show that either $\{a\}^* \subseteq L(A)$ or $\{a\}^a \cap L(A) = \emptyset$
+  \end{parts}
+
+  \question
+  Consider the DFA with the following transition table:
+  \begin{center}
+    \begin{tabular}{c|c|c}
+      &0&1\\
+      \hline
+      $\rightarrow A$&A&B\\
+      $*B$&B&A
+    \end{tabular}
+  \end{center}
+  Informally describe the language accepted by this DFA and prove by
+  induction on the length of an input string that your description is
+  correct Hint: When setting up the inductive hypothesis it is wise
+  to make a statement about what inputs get you to each state, not just
+  what inputs get you to the accepting state.
+
+  \question
+  write a program to solve the following problem:\\
+  given an NFA $M = (Q, \Sigma, \delta, q0, F)$ and an input string of
+  M w, you are able to determine if w is in L(M)
+
+  \question
+  Convert to a DFA the following NFA:
+  \begin{center}
+    \begin{tabular}{c|c|c}
+      $\rightarrow p$&{p,q}&{p}\\
+      \hline
+      q&\{r\}&\{r\}\\
+      r&\{s\}&$\emptyset$\\
+      $*s$&\{s\}&\{s\}
+    \end{tabular}
+  \end{center}
+
+  \question
+  Give a nondeterministic finite automata to accept the following
+  language. Try to take advantage of nondeterminism as much as possible.
+  \begin{center}
+    The set of strings over the alphabet \{0,1,..,9\} such that the final
+    digit has appeared before.
+  \end{center}
+
+  \question
+  Design NFA's to recognize the following sets of stings.
+  \begin{parts}
+    \part
+    abc, abd, and aacd. Assume the alphabet is \{a,b,c,d\}.
+    \part
+    0101, 101, 011.
+    \part
+    ab, bc, and ca. 
+  \end{parts}
+
+  \question
+  Convert each of your NFA's from question 7 to DFA's
+
+  \question
+  Here is a transition table for a DFA:
+  \begin{center}
+    \begin{tabular}{c|c|c}
+      &0&1\\
+      \hline
+      $\rightarrow q_2$&$q_2$&$q_1$\\
+      $q_2$&$q_3$&$q_1$\\
+      $*q_3$&$q_3$&$q_2$
+    \end{tabular}
+  \end{center}
+  Construct the transition diagram for the DFA and give a regular
+  expression for its language by eliminating state
+
+  \question
+  Convert the following DFA to a regular expression, using the
+  state-elimination technique.
+  \begin{center}
+    \begin{tabular}{c|c|c}
+      &0&1\\
+      \hline
+      ${\rightarrow}*p$&s&p\\
+      q&p&s\\
+      r&r&q\\
+      s&q&r
+    \end{tabular}
+  \end{center}
+  
+  \question
+  Prove that the following are not a regular languages
+  \begin{parts}
+    \part
+    \{$0^n10^n|n \ge 1$\}
+    \part
+    \{$0^n|n$ is a perfect square\}
+  \end{parts}
+
+  \question
+  \begin{parts}
+    \part
+    Construct a right-linear grammar for the language denoted by regex
+    $((aab^*ba)^*)$
+    \part
+    Construct an NFA or $\epsilon$-NFA that accepts the language generated
+    by the grammar:
+    \begin{align*}
+      $G = (\{S,A,B\},\{a,b\},P,S)$ &where P:\\
+      $
+      S &\rightarrow abA\\
+      A &\rightarrow baB\\
+      B &\rightarrow aA|bb\\
+      $
+    \end{align*}
+  \end{parts}
+
+  \question
+  Design context-free grammars for the following languages:
+  \begin{parts}
+    \part
+    The set \{$0^n1^n | n \ge 1$\}
+    \part
+    The set \{$a^ib^jc^k | i \neq j$ or $j \neq k$\}
+  \end{parts}
+
+  \question
+  The following grammar generates the language of regular expression
+  $0^*1(0+1)^*$:\\
+  \begin{align*}
+    &S \rightarrow A1B\\
+    &A \rightarrow 0A|\epsilon\\
+    &B \rightarrow 0B|1B|\epsilon
+  \end{align*}
+  Give the leftmost derivation of the following string:
+  \begin{center}
+    00101
+  \end{center}
+
+  \question
+  Design a PDA to accept the following language. You may accept
+  either by final state or by empty stack, whichever is more convenient:
+  \begin{center}
+    The set of all strings of 0's and 1's with an equal number of 0's and
+    1's
+  \end{center}
+
+  \question
+  Design a PDA to accept each of the following language
+  \begin{center}
+    $\{a^ib^jc^k | i = j$ or $j = k\}$
+  \end{center}
+
+  \question
+  PDA P = $(\{q_0,q_1,q_2,q_3,f\}, \{Z_0,A,B\}, \delta, q_0, Z_0, \{f\})$ has
+  the following rules defining $\delta$:\\
+  \begin{align*}
+    \delta(q_0, a, Z_0) = (q_1, AAZ_0)\quad
+    \delta(q_0, b, Z_0) &&= (q_2,BZ_0)\quad
+    \delta(q_0, \epsilon, Z_0) = (f, \epsilon)\\
+    \delta(q_1, a, A) = (q_1, AAA)\quad
+    \delta(q_1, b, A) &= (q_1, \epsilon)\quad
+    \delta(q_1, \epsilon, Z_0) = (q_0, Z_0)\\
+    \delta(q_2, a, B) = (q_3, \epsilon)\quad
+    \delta(q_2, b, B) &&= (q_2, BB)\quad
+    \delta(q_2, \epsilon, Z_0) = (q_0, Z_0)\\
+    \delta(q_3, \epsilon, B) = (q_2, \epsilon)\quad
+    \delta(q_3, \epsilon, Z_0) &&= (q_1, AZ_0)\\
+  \end{align*}
+  Note that, since each of the sets above has only one choice of move, we
+  have omitted the set brackets from each set of rules.
+  \begin{center}
+    Give an execution trace (sequence of ID's) showing that string
+    \textit{bab} is in L(P)
+  \end{center}
+
+  \question
+  Use the CFL pumping lemma to show each of these languages not to be
+  context-free
+  \begin{parts}
+    \part
+    $\{a^ib^jc^k | i<j<k\}$
+    \part
+    $\{0^i1^j | j=i^2\}$
+  \end{parts}
+
+  \question
+  Given the turing machine:
+  \begin{center}
+    \begin{tabular}{c|  c  c  c  c  c}
+      State & 0 & 1 & X & Y & B\\
+      \hline
+      $q_0$ & $(q_1,X,R)$ & | & | & $(q_3,Y,R)$ & |\\
+      $q_1$ & $(q_1,0,R)$ & $(q_2,Y,L)$ & | & $(q_1,Y,R)$ & |\\
+      $q_2$ & $(q_2,0,L)$ & | & $(q_0,X,R)$ & $(q_2,Y,L)$ & |\\
+      $q_3$ & | & | & | & $(q_3,Y,R)$ & $(q_4,B,R)$\\
+      $q_4$ & | & | & | & | & |
+    \end{tabular}
+  \end{center}
+  show the Id of the Turing machine if the input tape contains \textit{00}
+
+  \question
+  Consider the Turning machine.
+  \begin{center}
+    $M = (\{q_0,q_1,q_2,q_f\}, \{0,1\}, \{0,1,B\}, \delta, q_0, B, \{q_f\})$
+  \end{center}
+  informally but clearly describe the language L(M) if $\delta$ consists
+  of the following set of rules:
+  \begin{center}
+    $
+    \delta(q_0, 0) = (q_1,q,R); \delta(q_1,1) = (q_0, 0, R);
+    \delta(q_1,B) = (q_f, B, R)
+    $
+  \end{center}
+
+  \question
+  Design the Turing machine for the following language
+  \begin{center}
+    The set of strings with an equal number of 0's and 1's
+  \end{center}
+\end{questions}
+
+\section*{Given In Exam Prep}
+\begin{questions}
+  \question
+  the turing machine $(\{q_0,q_1,q_2\},\{0,1\},\{0,1,B\},\delta,B,\{q_2\})$ has the following transitions and no others
+  \begin{center}
+    $
+    \delta(q_0,0) = (q_1,1,R)\\
+    \delta(q_1,1) = (q_2,0,L)\\
+    \delta(q_2,1) = (q_0,1,R)
+    $
+  \end{center}
+  starting with ID $q_00110$ show the entire sequence of ID's entered by this TM until it halts
+
+  \question
+  Is the language $\{a^nb^nc^{n-1}| n \ge 1\}$ context free? prove it.
+
+  \question
+  Is the language $\{a^{n}b^{n}c^{n-1}| n \ge 1\}$ regular? prove it.
+
+  \question
+  Design a PDA to accept the language $\{ww^{R}|w \in \{a,b\}^{*}\}$
+
+  \question
+  Is the language $L = \{abw|w \in \{a,b\}^*\}$ regular? if it is find a DFA to accept it, otherwise prove it's not.
+
+  \question
+  design a context-free grammar $G = ({S,A,B},{a,b},P,S)$ where P is the set of productions:
+  \begin{center}
+    $
+    S \rightarrow AB|C\\
+    A \rightarrow aAb|ab\\
+    B \rightarrow cBd|cd\\
+    C \rightarrow aCd|aDd\\
+    D \rightarrow bDc|bc\\
+    $
+  \end{center}
+  the grammar is ambiguous. show in particular that the string \itemit{aabbbccdd} has two
+  \begin{parts}
+    \part
+    parse trees
+    \part
+    leftmost derivations
+    \part
+    rightmost derivations
+  \end{parts}
+
+  \question
+  Consider the grammar $G = (\{S,A,B\}, \{a,b\}, P, S)$, where P is the set of productions:
+  \begin{center}
+    $
+    S \rightarrow abA\\
+    A \rightarrow baB\\
+    B \rightarrow aA|bb\\
+    $
+  \end{center}
+  let L=L(G). is L a regular language? if L is a regular language, construct a DFA accepting L. if it is not why?
+
+  \question
+  give a DFA accepting the language $L = \{w|w \in \{a,b\}^* | $ w ends in ab$\}$
+
+  \question
+  suppose $L_1 = \{a^{2n}| n \ge 1\}$ $L_2 = \{b^{n}| n \ge 1\}$, prove or disprove $L_{1}L_{2} = \{a^{2n}b^n\}$
+
+  \question
+  $L_1$ and $L_2$ are recursivly enumarable. is $L_1 \cap L_2$ RW? Why?
+\end{questions}
+
+\section*{Last Years Final}
+\begin{questions}
+  \question
+  Consider the grammar $G=(\{S\}, \{a,b,+,*\}, P, S)$ where P:
+  \begin{center}
+    $
+    S \rightarrow S+S\\
+    S \rightarrow a\\
+    S \rightarrow S*S\\
+    S \rightarrow b
+    $
+  \end{center}
+  show that "a+b*a" has two
+  \begin{parts}
+    \part
+    parse trees
+    \part
+    leftmost derivations
+    \part
+    rightmost derivations
+  \end{parts}
+
+  \question
+  Construct a regular grammar for $b^*a(bba^*ab)^*$
+
+  \question
+  Design PDA to accept the language $\{w | w \in \{a,b,c,d\}^*$ and $n_a(w) = n_b(w)+n_c(w)+2\}$ where $n_a(w)$ is the number of a's in w
+
+  \question
+  Is there a program H with input (x,y) with the definition:
+  \begin{center}
+    $\{x(y)\downarrow $ return no, $x(y)\uparrow $ return yes$\}$
+  \end{center}
+
+  \question
+  Is the language $L=\{a^{i_1}b^jc^k | i \le k-j, i,j,k \ge 0\}$ regular? Prove or disprove.
+
+  \question
+  Design CFG for $\{a^{n+2}b^n | n \ge 1\} \cup \{a^{2n}b^{n+1} | n \ge 0\}$
+
+  \question
+  Grammar G has P:
+  \begin{center}
+    $
+    S \rightarrow Aab|baB\\
+    A \rightarrow bB|aA|\epsilon\\
+    B \rightarrow Bb|aB|\epsilon
+    $
+  \end{center}
+  \begin{parts}
+    \part
+    Is G context free?
+    \part
+    Is G regular?
+    \part
+    Is L(G) context free
+    \part
+    is L(G) regular?
+  \end{parts}
+\end{questions}
+\end{document}

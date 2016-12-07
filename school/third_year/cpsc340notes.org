@@ -328,7 +328,7 @@ exercises:
 	not regular, (a^s)(b^m)|(b^m)(a^m) right side is bigger (more a's)
       
 
-** TODO homework
+** DONE homework
 - exercises
 - 3.2.1 e
 - 3.2.3
@@ -340,7 +340,7 @@ exercises:
   - find regex from some sort of (ϵ-){0-1}[DN]FA (3.6)
   - concatenate or union of two languages, construct *FA to accept it
   - lazy subset construction
-** TODO homework 
+** DONE homework 
 - 4.1.1 c
 - 4.1.2 a
 - 4.1.1
@@ -405,7 +405,7 @@ S -> abA
 A -> baB
 B -> aA|bb
 
-** TODO homework
+** DONE homework
 write an algorithm that takes a DFA M and determines its finiteness (just sudo-code)
 - exercises
   - 5.1.1 a,b
@@ -468,7 +468,7 @@ pushdown atomata (missed this one)
 - (q0, 0110, Z0) |- (q0, 110, 0Z0) |- and so on
 - (state, remaining symbols, stack) |- (state, remaining symbols, stack)
 - this is how you show a PDA can take a word
-** TODO homework pushdown automata
+** DONE homework pushdown automata
 - exercises
   - 6.2.1 c (accept by final states)
   - 6.2.2 a
@@ -503,8 +503,7 @@ pushdown atomata (missed this one)
   - case 5 vwx = 2^m
 - possible question, shown proof that a language is not context free find the error
 
-** TODO homework
-- 
+** DONE homework
 - exersises
 - 7.2.1 a
 - 7.2.1 d
@@ -591,7 +590,7 @@ pushdown atomata (missed this one)
     - if w is in L then M accepts (and therefore halts)
     - if w is not in L then M eventually halts, although it never enters an accepting state
     - Note this is called an algorithm, a problem is decidable if it is a recursive language, otherwise, undecidable
-** TODO homework 
+** DONE homework 
 - 8.2.1 a
 - 8.2.5 a
 - 8.2.2 a 
@@ -614,7 +613,7 @@ pushdown atomata (missed this one)
 probably on halting problem
                    
                    
-** TODO homework
+** DONE homework
 - exercise 9.2.6 a
 - 9.2.6 b
 * lecture 30 [2016-11-23 Wed]
