@@ -719,7 +719,20 @@ not RE
 
 * last years exam
 - 10 questions
-- construct regular grammar for language denoted by regular expression b^{*}a(bba⃰b⃰)
+- consider the grammer G = ({S}, {a,b,+,*}, P, S) where P:
+  - S \rightarrow S+S
+  - S \rightarrow S*S
+  - S \rightarrow a
+  - S \rightarrow b
+  - show that "a+b*a" has two
+    - parse trees
+    - leftmost derivations
+    - rightmost derivations
+- given a turing machine M
+  - given id, trace
+  - is L(M) regular? if yes write a regex
+  - is L(M) context free, explain
+- construct regular grammar for language denoted by regular expression b^{*}a(bba⃰ab)⃰ (start with DFA)
 - design a PDA to accept the language where n_a(w) is the number of a's in a string and so on
   - {w|w \in {a,b,c,d}⃰ and n_a(w) = n_b(w) + n_c(w)}
 - halting problem, is there any H which can do the following job
