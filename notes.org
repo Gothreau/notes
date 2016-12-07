@@ -71,6 +71,14 @@
 ** dvd ripping application 
 - you tell it the name of the show, it looks it up and gets metadata
 - you put in disks in order, it rips them, names them, and asks for the next disk
+** tap racer
+A racing game clicker
+types of upgrades:
+- pit crew
+- fuel
+- tires
+- engine
+- driver
 * todos
 ** TODO set up linux for grandma and grandpa
 - must haves
