@@ -1,0 +1,12 @@
+* Definitions
+DFA:
+
+NFA:
+
+\epsilon-NFA:
+
+Grammar:
+
+* Things to study
+- Induction
+- \hat{\delta} (homework #2)
