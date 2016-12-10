@@ -1,12 +1,24 @@
 * Definitions
-DFA:
+** DFA:
 
-NFA:
+** NFA:
 
-\epsilon-NFA:
+** \epsilon-NFA:
 
-Grammar:
+** Grammar:
+** Right Linear
+** Left Linear
+** context free
 
+** Pumping Lemma for Regular languages:
+
+** PDA
 * Things to study
-- Induction
-- \hat{\delta} (homework #2)
+- Induction (homework #2, #3)
+- \hat \delta (hw #2)
+- NFA to DFA
+- Lazy subset construction
+- regex from DFA (state elimination technique, hw #9, #10)
+- regex to grammar
+- NFA to grammar
+- Grammar to NFA

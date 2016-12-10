@@ -58,8 +58,9 @@ warnock@unbc.ca}
   Convert to a DFA the following NFA:
   \begin{center}
     \begin{tabular}{c|c|c}
-      $\rightarrow p$&{p,q}&{p}\\
+      &0&1\\
       \hline
+      $\rightarrow p$&\{p,q\}&\{p\}\\
       q&\{r\}&\{r\}\\
       r&\{s\}&$\emptyset$\\
       $*s$&\{s\}&\{s\}
@@ -133,14 +134,14 @@ warnock@unbc.ca}
     \part
     Construct an NFA or $\epsilon$-NFA that accepts the language generated
     by the grammar:
-    \begin{align*}
+    \begin{center}
       $G = (\{S,A,B\},\{a,b\},P,S)$ &where P:\\
       $
       S &\rightarrow abA\\
       A &\rightarrow baB\\
       B &\rightarrow aA|bb\\
       $
-    \end{align*}
+    \end{center}
   \end{parts}
 
   \question
@@ -172,9 +173,9 @@ warnock@unbc.ca}
     The set of all strings of 0's and 1's with an equal number of 0's and
     1's
   \end{center}
-
+\newpage
   \question
-  Design a PDA to accept each of the following language
+  Design a PDA to accept the following language:
   \begin{center}
     $\{a^ib^jc^k | i = j$ or $j = k\}$
   \end{center}
