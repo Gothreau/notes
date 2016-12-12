@@ -1,0 +1,118 @@
+* Definitions
+** DFA:
+DFA M = (Q,\Sigma,\delta,q_0,F) consisting of
+- a finite set of states (Q)
+- a finite set of input symbols called the alphabet (\Sigma)
+- a transition function (\delta: Q x \Sigma \rightarrow Q)
+- an initial or start state (q_0 \in Q)
+- a set of accepting states (F \subseteq Q)
+
+a string w over the alphabet \Sigma is accepted by M if a sequence of states, r_{0},r_{1},...,r_{n} exists in Q with the following conditions:
+ #+BEGIN_CENTER
+ 1. r_0 = q_0
+ 2. r_{i+1} = \delta(r_j, a_{i+1}), for i = 0,...,n-1
+ 3. r_n \in F
+ #+END_CENTER
+
+** NFA:
+NFA M = (Q,\Sigma,\delta,q_0,F) consisting of
+- a finite set of states (Q)
+- a finite set of input symbols called the alphabet (\Sigma)
+- a transition function (\delta: Q x \Sigma \rightarrow 2^Q)
+- an initial or start state (q_0 \in Q)
+- a set of accepting states (F \subseteq Q)
+
+The same rules govern a word w's acceptance by M as with a DFA
+
+** \epsilon-NFA:
+An \epsilon-NFA M = (Q,Sigma,\delta,q_0,F) consisting of
+- a finite set of states (Q)
+- a finite set of input symbols called the alphabet (\Sigma)
+- a transition function (\delta: Q x (\Sigma \cup \epsilon) \rightarrow 2^Q)
+- an initial or start state (q_0 \in Q)
+- a set of accepting states (F \subseteq Q)
+
+The same rules govern a word w's acceptance by M as with a DFA
+
+** Grammar:
+A grammar G = (N,\Sigma,P,S) where
+- a finite set of nonterminal symbols that is disjoint with the strings formed by G (N)
+- a finite set of terminal symbols that is disjoint from N (\Sigma)
+- a finite set of production rules (P) each of the form:
+#+BEGIN_CENTER
+(\Sigma \cup N)^* N(\Sigma \cup N)^* \rightarrow (\Sigma \cup N)^*
+#+END_CENTER
+- a distinguished symbol S \in N that is the start symbol
+
+*** Right Linear
+All nonterminals in the righthand side of productions are at the right ends
+*** Left Linear
+All nonterminals in the righthand side of productions are at the left ends
+*** Linear Grammar
+All of the productions in a linear grammar are right or left linear (not neccesarily all the same)
+*** Regular Grammar
+A left or right linear grammar
+*** context free
+a context free grammar imposes the following rules on elements of P
+#+BEGIN_CENTER
+A \rightarrow x where A \in V , x \in (V U T)^*
+#+END_CENTER
+
+** Pumping Lemma for Regular languages:
+let L be a regular language. then there exists a constant n \ge 1 st. if w is any string in L st. |w| \ge n, we can find x,y,z st. w = xyz
+  1. |xy| \le n
+  3. y \ne \epsilon
+  4. for all k \ge 0, xy^{k}z \in L
+
+** pumping lemma for Context free languages
+let L be a context free language. then there exists a constant n \ge 1 st. if z is any string in L st. |z| \ge n, we can find u,v,w,x,y st. z = uvwxy
+  1. |vwx| \le n
+  2. vx \ne \epsilon
+  3. for all i \ge 0, uv^{i}wx^{i}y \in L
+
+** PDA
+PDA M = (Q,\Sigma,\Gamma,\delta,Z,F) consisting of:
+- a finite set of states (Q)
+- a finite set of input symbols called the alphabet (\Sigma)
+- a finite set of stack symbols called the stack alphabet (\Gamma)
+- a transition relation \delta \subseteq Q x (\Sigma \cup {\epsilon}) x \Gamma x Q x \Gamma^*
+- an initial or start state (q_0 \in Q)
+- Z \in \Gamma is the inital stack symbol
+- a set of accepting states (F \subseteq Q)
+
+An element (p,a,A,q,\alpha) \in \delta is a transition of M. It has the intended meaning that M, in state p \in Q, on the input 
+a \in \Sigma \cup {\epsilon} and with A \in \Gamma as topmost stack symbol, may read a, change the state to q, pop A, replacing it
+by pushing \alpha \in \Gamma^*. 
+
+** Turing Machine
+A Turing Machine M = (Q,\Gamma,b,\Sigma,\delta,q_0,F) consisting of:
+- a finite set of states (Q)
+- a finite, non-empty set of tape alphabet symbols (\Gamma)
+- a blank symbol, the only symbol allowed to occur on the tape infinitely often at any step (b \in \Gamma)
+- a set of input symbols (\Sigma \subseteq \Gamma - {b})
+- a partial function \delta: Q x \Gamma \rightarrow Q x \Gamma x {L,R}
+- an initial state (q_0)
+- a set of final or accepting states (F \subseteq Q)
+*** Turing Machine ID
+the ID of a turing machine = \alpha{}q\Beta where \alpha is the symbols to the left, q is the current state, \Beta 
+is the curent symbol and the everything to the right.
+
+** Recursivly Enumerable Language
+a recursivly enumerable language is computable by a turing machine and will halt if there is an answer
+** Recursive Language
+a recursive language is computable by a turing machine and the machine will eventually halt
+** Chomsky hierarchy
+each level contains the levels below it
+- Recursively Enumerable
+  - Turing Machines
+- Context Sensitive
+  - Linear Bounded Turing Machine
+- Context Free
+  - Context Free Grammar
+  - Pushdown Automata
+- Regular
+  - Regular Expression
+  - DFA
+  - NFA
+  - \epsilon-NFA
+  - Regular Grammar
