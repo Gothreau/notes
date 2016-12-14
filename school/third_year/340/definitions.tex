@@ -1,0 +1,198 @@
+% Created 2016-12-12 Mon 13:32
+\documentclass[11pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{fixltx2e}
+\usepackage{graphicx}
+\usepackage{longtable}
+\usepackage{float}
+\usepackage{wrapfig}
+\usepackage{rotating}
+\usepackage[normalem]{ulem}
+\usepackage{amsmath}
+\usepackage{textcomp}
+\usepackage{marvosym}
+\usepackage{wasysym}
+\usepackage{amssymb}
+\usepackage{hyperref}
+\tolerance=1000
+\author{Barry }
+\date{\today}
+\title{definitions}
+\hypersetup{
+  pdfkeywords={},
+  pdfsubject={},
+  pdfcreator={Emacs 25.1.1 (Org mode 8.2.10)}}
+\begin{document}
+
+\maketitle
+\tableofcontents
+
+\section{Definitions}
+\label{sec-1}
+\subsection{DFA:}
+\label{sec-1-1}
+DFA M = (Q,$\Sigma$,$\delta$,q$_{\text{0}}$,F) consisting of
+\begin{itemize}
+\item a finite set of states (Q)
+\item a finite set of input symbols called the alphabet ($\Sigma$)
+\item a transition function ($\delta$: Q x $\Sigma$ $\rightarrow$ Q)
+\item an initial or start state (q$_{\text{0}}$ $\in$ Q)
+\item a set of accepting states (F \subseteq Q)
+\end{itemize}
+
+a string w over the alphabet $\Sigma$ is accepted by M if a sequence of states, r$_{\text{0}}$,r$_{\text{1}}$,\ldots{},r$_{\text{n}}$ exists in Q with the following conditions:
+\begin{center}
+\begin{enumerate}
+\item r$_{\text{0}}$ = q$_{\text{0}}$
+\item r$_{\text{i+1}}$ = $\delta$(r$_{\text{j}}$, a$_{\text{i+1}}$), for i = 0,\ldots{},n-1
+\item r$_{\text{n}}$ $\in$ F
+\end{enumerate}
+\end{center}
+
+\subsection{NFA:}
+\label{sec-1-2}
+NFA M = (Q,$\Sigma$,$\delta$,q$_{\text{0}}$,F) consisting of
+\begin{itemize}
+\item a finite set of states (Q)
+\item a finite set of input symbols called the alphabet ($\Sigma$)
+\item a transition function ($\delta$: Q x $\Sigma$ $\rightarrow$ 2$^{\text{Q}}$)
+\item an initial or start state (q$_{\text{0}}$ $\in$ Q)
+\item a set of accepting states (F \subseteq Q)
+\end{itemize}
+
+The same rules govern a word w's acceptance by M as with a DFA
+
+\subsection{$\epsilon$-NFA:}
+\label{sec-1-3}
+An $\epsilon$-NFA M = (Q,Sigma,$\delta$,q$_{\text{0}}$,F) consisting of
+\begin{itemize}
+\item a finite set of states (Q)
+\item a finite set of input symbols called the alphabet ($\Sigma$)
+\item a transition function ($\delta$: Q x ($\Sigma$ $\cup$ $\epsilon$) $\rightarrow$ 2$^{\text{Q}}$)
+\item an initial or start state (q$_{\text{0}}$ $\in$ Q)
+\item a set of accepting states (F \subseteq Q)
+\end{itemize}
+
+The same rules govern a word w's acceptance by M as with a DFA
+
+\subsection{Grammar:}
+\label{sec-1-4}
+A grammar G = (N,$\Sigma$,P,S) where
+\begin{itemize}
+\item a finite set of nonterminal symbols that is disjoint with the strings formed by G (N)
+\item a finite set of terminal symbols that is disjoint from N ($\Sigma$)
+\item a finite set of production rules (P) each of the form:
+\end{itemize}
+\begin{center}
+($\Sigma$ $\cup$ N)$^{\text{*}}$ N($\Sigma$ $\cup$ N)$^{\text{*}}$ $\rightarrow$ ($\Sigma$ $\cup$ N)$^{\text{*}}$
+\end{center}
+\begin{itemize}
+\item a distinguished symbol S $\in$ N that is the start symbol
+\end{itemize}
+
+\subsubsection{Right Linear}
+\label{sec-1-4-1}
+All nonterminals in the righthand side of productions are at the right ends
+\subsubsection{Left Linear}
+\label{sec-1-4-2}
+All nonterminals in the righthand side of productions are at the left ends
+\subsubsection{Linear Grammar}
+\label{sec-1-4-3}
+All of the productions in a linear grammar are right or left linear (not neccesarily all the same)
+\subsubsection{Regular Grammar}
+\label{sec-1-4-4}
+A left or right linear grammar
+\subsubsection{context free}
+\label{sec-1-4-5}
+a context free grammar imposes the following rules on elements of P
+\begin{center}
+A $\rightarrow$ x where A $\in$ V , x $\in$ (V U T)$^{\text{*}}$
+\end{center}
+
+\subsection{Pumping Lemma for Regular languages:}
+\label{sec-1-5}
+let L be a regular language. then there exists a constant n $\ge$ 1 st. if w is any string in L st. |w| $\ge$ n, we can find x,y,z st. w = xyz
+\begin{enumerate}
+\item |xy| $\le$ n
+\item y $\ne$ $\epsilon$
+\item for all k $\ge$ 0, xy$^{\text{k}}$z $\in$ L
+\end{enumerate}
+
+\subsection{pumping lemma for Context free languages}
+\label{sec-1-6}
+let L be a context free language. then there exists a constant n $\ge$ 1 st. if z is any string in L st. |z| $\ge$ n, we can find u,v,w,x,y st. z = uvwxy
+\begin{enumerate}
+\item |vwx| $\le$ n
+\item vx $\ne$ $\epsilon$
+\item for all i $\ge$ 0, uv$^{\text{i}}$wx$^{\text{i}}$y $\in$ L
+\end{enumerate}
+
+\subsection{PDA}
+\label{sec-1-7}
+PDA M = (Q,$\Sigma$,$\Gamma$,$\delta$,Z,F) consisting of:
+\begin{itemize}
+\item a finite set of states (Q)
+\item a finite set of input symbols called the alphabet ($\Sigma$)
+\item a finite set of stack symbols called the stack alphabet ($\Gamma$)
+\item a transition relation $\delta$ \subseteq Q x ($\Sigma$ $\cup$ \{$\epsilon$\}) x $\Gamma$ x Q x $\Gamma$$^{\text{*}}$
+\item an initial or start state (q$_{\text{0}}$ $\in$ Q)
+\item Z $\in$ $\Gamma$ is the inital stack symbol
+\item a set of accepting states (F \subseteq Q)
+\end{itemize}
+
+An element (p,a,A,q,$\alpha$) $\in$ $\delta$ is a transition of M. It has the intended meaning that M, in state p $\in$ Q, on the input 
+a $\in$ $\Sigma$ $\cup$ \{$\epsilon$\} and with A $\in$ $\Gamma$ as topmost stack symbol, may read a, change the state to q, pop A, replacing it
+by pushing $\alpha$ $\in$ $\Gamma$$^{\text{*}}$. 
+
+\subsection{Turing Machine}
+\label{sec-1-8}
+A Turing Machine M = (Q,$\Gamma$,b,$\Sigma$,$\delta$,q$_{\text{0}}$,F) consisting of:
+\begin{itemize}
+\item a finite set of states (Q)
+\item a finite, non-empty set of tape alphabet symbols ($\Gamma$)
+\item a blank symbol, the only symbol allowed to occur on the tape infinitely often at any step (b $\in$ $\Gamma$)
+\item a set of input symbols ($\Sigma$ \subseteq $\Gamma$ - \{b\})
+\item a partial function $\delta$: Q x $\Gamma$ $\rightarrow$ Q x $\Gamma$ x \{L,R\}
+\item an initial state (q$_{\text{0}}$)
+\item a set of final or accepting states (F \subseteq Q)
+\end{itemize}
+\subsubsection{Turing Machine ID}
+\label{sec-1-8-1}
+the ID of a turing machine = $\alpha$qB where $\alpha$ is the symbols to the left, q is the current state, B 
+is the curent symbol and the everything to the right.
+
+\subsection{Recursivly Enumerable Language}
+\label{sec-1-9}
+a recursivly enumerable language is computable by a turing machine and will halt if there is an answer
+\subsection{Recursive Language}
+\label{sec-1-10}
+a recursive language is computable by a turing machine and the machine will eventually halt
+\subsection{Chomsky hierarchy}
+\label{sec-1-11}
+each level contains the levels below it
+\begin{itemize}
+\item Recursively Enumerable
+\begin{itemize}
+\item Turing Machines
+\end{itemize}
+\item Context Sensitive
+\begin{itemize}
+\item Linear Bounded Turing Machine
+\end{itemize}
+\item Context Free
+\begin{itemize}
+\item Context Free Grammar
+\item Pushdown Automata
+\end{itemize}
+\item Regular
+\begin{itemize}
+\item Regular Expression
+\item DFA
+\item NFA
+\item $\epsilon$-NFA
+\item Regular Grammar
+\end{itemize}
+\end{itemize}
+% Emacs 25.1.1 (Org mode 8.2.10)
+\end{document}
