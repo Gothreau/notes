@@ -1,0 +1,12 @@
+| part         | specs                                                          |  price | link                                                           |
+|--------------+----------------------------------------------------------------+--------+----------------------------------------------------------------|
+| cpu          | 3.5 ghz 6 cores, socket AM3+                                   | 124.99 | http://www.newegg.ca/Product/Product.aspx?Item=N82E16819113286 |
+| gpu          | GTX 1050, 4 gb ram,  pci express 3.0, 300 watts, 5.70" x 4.38" | 194.99 | http://www.newegg.ca/Product/Product.aspx?Item=N82E16814487290 |
+| case         |                                                                | 139.99 | http://www.newegg.ca/Product/Product.aspx?item=N82E16811854005 |
+| motherboard  | ATX                                                            |  94.99 | http://www.newegg.ca/Product/Product.aspx?Item=N82E16813131872 |
+| hard drive   | 2 TB                                                           |  89.99 | http://www.newegg.ca/Product/Product.aspx?item=N82E16822235013 |
+| ram          | 8 gb                                                           | 124.99 | http://www.newegg.ca/Product/Product.aspx?Item=N82E16820231888 |
+| power supply | 450 watts                                                      |  89.99 | http://www.newegg.ca/Product/Product.aspx?Item=N82E16817151124 |
+|--------------+----------------------------------------------------------------+--------+----------------------------------------------------------------|
+| total        | N/A                                                            | 859.93 | N/A                                                            |
+#+TBLFM: $3=vsum(@2..@8)
